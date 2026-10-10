@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Times Tables and Long Division</title>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E6EFF4;--card:#F6F9FB;--ink:#1B2A3A;--mute:#4A5F72;--line:#C4D3DE;--a:#167070;--dotB:#F2B632;--ok:#1E7A3C;--no:#9A4B00;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14212B;--card:#1E303E;--ink:#EAF1F5;--mute:#A9BCCA;--line:#38505F;--ok:#7BD99A;--no:#FFB870}}
+:root[data-theme="dark"]{--bg:#14212B;--card:#1E303E;--ink:#EAF1F5;--mute:#A9BCCA;--line:#38505F;--ok:#7BD99A;--no:#FFB870}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Lexend',Verdana,Tahoma,sans-serif;letter-spacing:.02em;line-height:1.6;font-size:18px}
+main{max-width:480px;margin:0 auto;padding:16px}
+h1{font-size:22px;margin:4px 0 12px;font-weight:600}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.tabs button{flex:1 0 20%;font:inherit;font-weight:600;font-size:22px;padding:10px 0;border-radius:14px;border:3px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.tabs button.on{color:#fff;border-color:transparent}
+.t3.on{background:#A63D5E}.t4.on{background:#3B6FB0}.t12.on{background:#5A7A1F}.t6.on{background:#167070}.t7.on{background:#6847B8}.t8.on{background:#B85A12}.tm.on{background:#2F5D8A}
+.card{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:18px;margin-bottom:14px}
+.q{font-size:56px;font-weight:600;text-align:center;line-height:1.2;margin:0 0 10px}
+.q span{color:var(--a)}
+.grid{display:grid;gap:5px;justify-content:center;margin:8px auto 14px}
+.dot{width:19px;height:19px;border-radius:50%}
+.dot.A{background:var(--a)}.dot.B{background:var(--dotB);outline:2px solid #B58410;outline-offset:-2px}
+.opts{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.opts button{font:inherit;font-weight:600;font-size:30px;padding:14px 0;border-radius:14px;border:3px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.opts button.bad{opacity:.35}
+.opts button.good{background:var(--ok);color:#fff;border-color:var(--ok)}
+.btn{font:inherit;font-weight:600;font-size:18px;padding:12px 16px;border-radius:12px;border:3px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.btn.main{background:var(--a);border-color:var(--a);color:#fff;width:100%;margin-top:10px;font-size:20px}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.msg{margin:12px 0 0;font-size:19px}
+.msg.good{color:var(--ok);font-weight:600}.msg.no{color:var(--no)}
+.trick{margin-top:10px;padding:12px;border-left:6px solid var(--dotB);background:var(--bg);border-radius:8px}
+.legend{color:var(--mute);font-size:16px;margin:0 0 6px;text-align:center}
+.stars{color:var(--mute);font-size:17px;text-align:center}
+.chart button{display:flex;justify-content:space-between;width:100%;font:inherit;font-size:20px;padding:6px 10px;margin:2px 0;border:0;border-radius:8px;background:transparent;color:var(--ink);cursor:pointer;text-align:left}
+.chart button:nth-child(even){background:var(--bg)}
+.chart b{color:var(--a)}
+.seg button{font-size:18px}
+.seg button.on{background:#2F5D8A;color:#fff;border-color:transparent}
+.lg{display:grid;justify-content:center;margin:8px auto 12px}
+.c{height:46px;font-size:30px;font-weight:600;text-align:center;line-height:46px}
+.c.top{border-top:3px solid var(--ink)}.c.lft{border-left:3px solid var(--ink)}.c.ul{border-bottom:3px solid var(--ink)}
+.c.hl{background:rgba(242,182,50,.45);border-radius:6px}.c.q{color:var(--a)}.c.sg{color:var(--mute)}.c.dv{text-align:right;padding-right:8px}
+.chip{display:inline-block;color:#fff;font-weight:600;padding:2px 12px;border-radius:999px;font-size:16px}
+.chip2{display:inline-block;min-width:40px;text-align:center;padding:2px 6px;border:2px solid var(--line);border-radius:8px;margin:2px;font-weight:600}
+:focus-visible{outline:4px solid #E0A100;outline-offset:2px}
+</style>
+</head>
+<body>
+<main>
+<h1>Maths practice</h1>
+<div class="tabs seg" id="mode"></div>
+<div class="tabs" id="tabs"></div>
+<div id="app"></div>
+<div class="row" style="margin-top:6px">
+<button class="btn" id="vw"></button>
+<button class="btn" id="th">Dark / light</button>
+</div>
+<p class="stars" id="st"></p>
+</main>
+<script>
+var $=function(s){return document.querySelector(s)};var TS=[3,4,6,7,8,12];
+var tbl=6,view='p',cur=null,done=false,stars=0,miss={},tried=[],msg='',msgC='',showTrick=false,opts=[];
+try{stars=+localStorage.getItem('tt-stars')||0;miss=JSON.parse(localStorage.getItem('tt-miss')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('tt-stars',stars);localStorage.setItem('tt-miss',JSON.stringify(miss))}catch(e){}}
+function say(s){try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(s);u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function sp(n){return n<=2?[n,0]:n==3?[2,1]:n==4?[2,2]:n==5?[5,0]:n<=9?[5,n-5]:n==10?[10,0]:[10,n-10]}
+function trick(t,n){var s=sp(n),a=s[0],b=s[1],p=t*n;
+if(n==1)return 'Anything times 1 stays the same: '+t;
+if(n==2)return 'Double it: '+t+' + '+t+' = '+p;
+if(n==10)return 'Times 10 adds a zero: '+p;
+if(n==5)return 'Half of 10 × '+t+' ('+10*t+') is '+p;
+return a+' × '+t+' = '+a*t+', then '+b+' × '+t+' = '+b*t+'. So '+a*t+' + '+b*t+' = '+p}
+function accent(t){return {3:'#A63D5E',4:'#3B6FB0',6:'#167070',7:'#6847B8',8:'#B85A12',12:'#5A7A1F'}[t]||'#2F5D8A'}
+function pick(){var ts=tbl=='m'?TS:[tbl],pool=[];
+ts.forEach(function(t){for(var n=2;n<=12;n++){var k=t+'x'+n,w=1+3*(miss[k]||0);if(cur&&cur.t==t&&cur.n==n)w=0;for(var i=0;i<w;i++)pool.push({t:t,n:n})}});
+cur=pool[Math.floor(Math.random()*pool.length)];done=false;tried=[];msg='';showTrick=false;
+var p=cur.t*cur.n,c=[p,p+cur.t,p-cur.t,p+1,p-1,p+10,p-10].filter(function(x,i,a){return x>0&&a.indexOf(x)==i});
+var d=c.slice(1).sort(function(){return Math.random()-.5}).slice(0,2);
+opts=[p].concat(d).sort(function(){return Math.random()-.5})}
+function answer(v){if(done||tried.indexOf(v)>-1)return;var k=cur.t+'x'+cur.n;
+if(v==cur.t*cur.n){done=true;stars++;if(tried.length==0&&miss[k])miss[k]--;msg='Yes! '+cur.t+' × '+cur.n+' = '+v;msgC='good';showTrick=true}
+else{tried.push(v);miss[k]=(miss[k]||0)+1;msg='Not yet. Look at the dots and try again.';msgC='no';showTrick=true}
+save();draw()}
+function dots(t,n){var s=sp(n)[0],h='<div class="grid" style="grid-template-columns:repeat('+t+',19px)">';
+for(var r=0;r<n;r++)for(var c=0;c<t;c++)h+='<div class="dot '+(r<s?'A':'B')+'"></div>';return h+'</div>'}
+var mode='t',dv=6,ldDig=2,ldRem=false,watch=false,ld=null,k=0,ans=false,ldMsg='',ldOpts=[],ldTried=[];
+var STEPC={div:'#6847B8',mul:'#B85A12',sub:'#167070',down:'#3B6FB0'},STEPN={div:'Divide',mul:'Multiply',sub:'Subtract',down:'Bring down'};
+function sh(a){return a.sort(function(){return Math.random()-.5})}
+function ldNew(){var ds=dv=='m'?[3,4,6,7,8]:[dv],d=ds[Math.floor(Math.random()*ds.length)],lo=ldDig==2?10:100,hi=ldDig==2?99:999,qa=Math.ceil(lo/d),qb=Math.floor(hi/d),qq=qa+Math.floor(Math.random()*(qb-qa+1)),N=d*qq;
+if(ldRem){var rr=1+Math.floor(Math.random()*(d-1));if(N+rr<=hi)N+=rr}
+var dg=String(N).split('').map(Number),L=dg.length,s0=dg[0]>=d?0:1,st=[],rem=0;
+for(var i=s0;i<L;i++){var cur=i==s0?+dg.slice(0,s0+1).join(''):rem*10+dg[i],q1=Math.floor(cur/d),pr=q1*d;rem=cur-pr;
+st.push({t:'div',i:i,cur:cur,q:q1},{t:'mul',i:i,cur:cur,q:q1,pr:pr},{t:'sub',i:i,cur:cur,pr:pr,rem:rem});
+if(i<L-1)st.push({t:'down',i:i,dg:dg[i+1],rem:rem})}
+ld={d:d,N:N,dg:dg,L:L,st:st};k=0;ldEnter()}
+function cv(s){return s.t=='div'?s.q:s.t=='mul'?s.pr:s.rem}
+function ldEnter(){ans=watch;ldTried=[];ldMsg='';var s=ld.st[k];if(!s||s.t=='down'){ldOpts=[];return}
+var c=cv(s),x=[c+1,c-1,c+2,c-2,c+ld.d,c-ld.d].filter(function(v,i,a){return v>=0&&a.indexOf(v)==i});
+ldOpts=sh([c].concat(sh(x).slice(0,2)))}
+function ldQ(s){var d=ld.d;return s.t=='div'?'How many '+d+'s fit into '+s.cur+'?':s.t=='mul'?'Multiply: '+s.q+' × '+d+' = ?':s.t=='sub'?'Subtract: '+s.cur+' − '+s.pr+' = ?':'Bring down the '+s.dg}
+function ldWhy(s){var d=ld.d;return s.t=='div'?d+' × '+s.q+' = '+d*s.q+' fits. '+d+' × '+(s.q+1)+' = '+d*(s.q+1)+' is too big. Write '+s.q+' on top.':s.t=='mul'?s.q+' × '+d+' = '+s.pr+'. Write '+s.pr+' under '+s.cur+'.':s.t=='sub'?s.cur+' − '+s.pr+' = '+s.rem+'. The answer must be smaller than '+d+'.':'Write '+s.dg+' next to '+s.rem+'. This is the new number to divide.'}
+function ldAns(v){var s=ld.st[k];if(ans)return;if(v=='d'||+v==cv(s))ans=true;else{ldTried.push(+v);ldMsg='Not yet. Check your '+ld.d+' times table below.'}draw()}
+function ldGrid(){var L=ld.L,R=k+(ans?1:0),qr=[],w=[],hlq=-1,hld=-1,cells='';
+for(var j=0;j<ld.st.length;j++){var s=ld.st[j];
+if(j<R){if(s.t=='div')qr[s.i]=s.q;else if(s.t=='mul')w.push({sg:'−',str:''+s.pr,end:s.i,ul:(''+s.cur).length});else if(s.t=='sub')w.push({sg:'',str:''+s.rem,end:s.i,ul:0});else{var r=w[w.length-1];r.str=(s.rem?''+s.rem:'')+s.dg;r.end=s.i+1}}
+else if(j==k){if(s.t=='div')hlq=s.i;if(s.t=='down')hld=s.i+1}}
+function C(t,c){cells+='<div class="c '+(c||'')+'">'+t+'</div>'}
+C('');for(var c=0;c<L;c++)C(qr[c]!=null?qr[c]:(c==hlq?'?':''),(c==hlq?'hl ':'')+'q');
+C(ld.d,'dv');for(c=0;c<L;c++)C(ld.dg[c],'top'+(c==0?' lft':'')+(c==hld?' hl':''));
+w.forEach(function(r){C(r.sg,'sg');for(var c=0;c<L;c++){var o=c-(r.end-r.str.length+1),on=o>=0&&c<=r.end;C(on?r.str[o]:'',r.ul&&c>r.end-r.ul&&c<=r.end?'ul':'')}});
+return '<div class="lg" style="grid-template-columns:repeat('+(L+1)+',44px)">'+cells+'</div>'}
+function drawLD(){if(!ld)ldNew();var d=ld.d,s=ld.st[k],fin=k>=ld.st.length,h='',tb='';
+document.documentElement.style.setProperty('--a',accent(d));
+[3,4,6,7,8,'m'].forEach(function(t){tb+='<button class="t'+t+(t==dv?' on':'')+'" data-d="'+t+'">'+(t=='m'?'Mix':t)+'</button>'});
+$('#tabs').innerHTML=tb;
+h+='<div class="row" style="margin-bottom:12px"><button class="btn" data-c="dig">'+ldDig+' digits</button><button class="btn" data-c="rem">'+(ldRem?'With remainders':'No remainders')+'</button><button class="btn" data-c="watch">'+(watch?'Watch me':'Your turn')+'</button></div>';
+h+='<div class="card"><p class="q" style="font-size:40px">'+ld.N+' ÷ '+d+'</p>'+ldGrid();
+if(fin){var qs=ld.st.filter(function(x){return x.t=='div'}).map(function(x){return x.q}).join(''),rm=ld.st[ld.st.length-1].rem;
+h+='<p class="msg good">Done! '+ld.N+' ÷ '+d+' = '+qs+(rm?' remainder '+rm:'')+'</p><button class="btn main" id="lnew">New problem</button>'}
+else{h+='<span class="chip" style="background:'+STEPC[s.t]+'">'+STEPN[s.t]+'</span><p class="msg" style="margin-top:8px">'+ldQ(s)+'</p>';
+if(ans)h+='<div class="trick">'+ldWhy(s)+'</div><button class="btn main" id="ln">Next step</button>';
+else{if(ldMsg)h+='<p class="msg no">'+ldMsg+'</p>';
+h+=s.t=='down'?'<button class="btn main" data-l="d">Bring down the '+s.dg+'</button>':'<div class="opts" style="margin-top:10px">'+ldOpts.map(function(o){return '<button data-l="'+o+'" class="'+(ldTried.indexOf(o)>-1?'bad':'')+'">'+o+'</button>'}).join('')+'</div>'}}
+h+='<div class="row" style="margin-top:12px"><button class="btn" id="lh">Hear it</button></div></div>';
+h+='<div class="card"><div class="legend" style="text-align:left">Your '+d+' times table</div><div>';
+for(var n=1;n<=10;n++)h+='<span class="chip2">'+d*n+'</span>';
+h+='</div></div><div class="card"><div class="legend" style="text-align:left">The steps. Say it: Dad, Mum, Sister, Brother, Rover</div>';
+[['div','Dad'],['mul','Mum'],['sub','Sister'],['down','Brother']].forEach(function(x){h+='<div style="margin:6px 0"><span class="chip" style="background:'+STEPC[x[0]]+'">'+x[1]+'</span> '+STEPN[x[0]]+'</div>'});
+h+='<div style="margin:6px 0"><span class="chip" style="background:#4A5F72">Rover</span> Repeat until no digits are left</div></div>';
+$('#app').innerHTML=h}
+function draw(){
+$('#mode').innerHTML=[['t','Times tables'],['l','Long division']].map(function(m){return '<button data-m="'+m[0]+'" class="'+(m[0]==mode?'on':'')+'">'+m[1]+'</button>'}).join('');
+$('#vw').hidden=mode=='l';$('#st').textContent='★ '+stars+' stars earned';
+if(mode=='l'){drawLD();return}
+var tb='';TS.concat('m').forEach(function(t){tb+='<button class="t'+t+(t==tbl?' on':'')+'" data-t="'+t+'">'+(t=='m'?'Mix':t)+'</button>'});
+$('#tabs').innerHTML=tb;
+document.documentElement.style.setProperty('--a',accent(tbl=='m'?cur&&cur.t:tbl));
+$('#vw').textContent=view=='p'?'Show chart':'Back to practice';
+$('#st').textContent='★ '+stars+' stars earned';
+var h='';
+if(view=='c'){var ts=tbl=='m'?TS:[tbl];
+h='<div class="card chart">';ts.forEach(function(t){h+='<div style="color:'+accent(t)+';font-weight:600;margin-top:6px">The '+t+' times table</div>';
+for(var n=1;n<=12;n++)h+='<button data-say="'+t+' times '+n+' equals '+t*n+'">'+t+' × '+n+' <b style="color:'+accent(t)+'">'+t*n+'</b></button>'});
+h+='</div><p class="legend">Tap a line to hear it.</p>'}
+else{if(!cur)pick();
+h='<div class="card"><p class="q">'+cur.t+' × '+cur.n+' = <span>'+(done?cur.t*cur.n:'?')+'</span></p>'+dots(cur.t,cur.n)+
+'<p class="legend">'+cur.n+' rows of '+cur.t+'. The two colours are two easier sums.</p>'+
+'<div class="opts">'+opts.map(function(o){return '<button data-a="'+o+'" class="'+(tried.indexOf(o)>-1?'bad':'')+(done&&o==cur.t*cur.n?' good':'')+'">'+o+'</button>'}).join('')+'</div>'+
+(msg?'<p class="msg '+msgC+'">'+msg+'</p>':'')+
+(showTrick?'<div class="trick">'+trick(cur.t,cur.n)+'</div>':'')+
+'<div class="row" style="margin-top:12px"><button class="btn" id="hear">Hear it</button>'+(showTrick?'':'<button class="btn" id="tk">Show the trick</button>')+'</div>'+
+(done?'<button class="btn main" id="nx">Next fact</button>':'')+'</div>'}
+$('#app').innerHTML=h}
+document.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+if(b.dataset.t){tbl=b.dataset.t=='m'?'m':+b.dataset.t;cur=null;draw()}
+else if(b.dataset.a)answer(+b.dataset.a);
+else if(b.dataset.say)say(b.dataset.say);
+else if(b.dataset.m){mode=b.dataset.m;draw()}
+else if(b.dataset.d){dv=b.dataset.d=='m'?'m':+b.dataset.d;ld=null;draw()}
+else if(b.dataset.c){var cc=b.dataset.c;if(cc=='dig')ldDig=ldDig==2?3:2;else if(cc=='rem')ldRem=!ldRem;else watch=!watch;ld=null;draw()}
+else if(b.dataset.l)ldAns(b.dataset.l);
+else if(b.id=='ln'){k++;if(k>=ld.st.length&&!watch){stars++;save()}ldEnter();draw()}
+else if(b.id=='lnew'){ld=null;draw()}
+else if(b.id=='lh')say(ld.st[k]?ldQ(ld.st[k]).replace('×','times').replace('−','minus'):'Well done');
+else if(b.id=='hear')say(cur.t+' times '+cur.n+' equals '+cur.t*cur.n);
+else if(b.id=='tk'){showTrick=true;draw()}
+else if(b.id=='nx'){pick();draw()}
+else if(b.id=='vw'){view=view=='p'?'c':'p';draw()}
+else if(b.id=='th'){var r=document.documentElement,dk=r.dataset.theme?r.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dk?'light':'dark'}});
+draw();
+</script>
+</body>
+</html>
