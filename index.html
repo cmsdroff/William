@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Times Tables and Long Division</title>
+<title>Maths Practice</title>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#E6EFF4;--card:#F6F9FB;--ink:#1B2A3A;--mute:#4A5F72;--line:#C4D3DE;--a:#167070;--dotB:#F2B632;--ok:#1E7A3C;--no:#9A4B00;
@@ -40,7 +40,7 @@ h1{font-size:22px;margin:4px 0 12px;font-weight:600}
 .chart button{display:flex;justify-content:space-between;width:100%;font:inherit;font-size:20px;padding:6px 10px;margin:2px 0;border:0;border-radius:8px;background:transparent;color:var(--ink);cursor:pointer;text-align:left}
 .chart button:nth-child(even){background:var(--bg)}
 .chart b{color:var(--a)}
-.seg button{font-size:18px}
+.seg button{font-size:17px;padding:10px 6px!important}
 .seg button.on{background:#2F5D8A;color:#fff;border-color:transparent}
 .lg{display:grid;justify-content:center;margin:8px auto 12px}
 .c{height:46px;font-size:30px;font-weight:600;text-align:center;line-height:46px}
@@ -48,26 +48,92 @@ h1{font-size:22px;margin:4px 0 12px;font-weight:600}
 .c.hl{background:rgba(242,182,50,.45);border-radius:6px}.c.q{color:var(--a)}.c.sg{color:var(--mute)}.c.dv{text-align:right;padding-right:8px}
 .chip{display:inline-block;color:#fff;font-weight:600;padding:2px 12px;border-radius:999px;font-size:16px}
 .chip2{display:inline-block;min-width:40px;text-align:center;padding:2px 6px;border:2px solid var(--line);border-radius:8px;margin:2px;font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 4px}
+.fact{font:inherit;font-weight:600;font-size:20px;padding:8px 4px;border-radius:12px;border:3px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;text-align:center}
+.fact.m{color:#fff}
+.pips{display:flex;justify-content:center;gap:6px;margin-top:4px}
+.pip{width:12px;height:12px;border-radius:50%;border:2px solid currentColor}
+.pip.on{background:currentColor}
+.ftitle{font-weight:600;margin:14px 0 2px}
+.tabs button.fs{font-size:17px;flex:1 0 40%;padding:10px 4px}
+.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.1;margin:0 .08em}
+.fr>span:first-child{border-bottom:.07em solid currentColor;padding:0 .12em}
+.q.fq{font-size:40px}
+.fbar{display:block;width:100%;max-width:320px;margin:6px auto}
+.fpie{display:block;width:170px;margin:6px auto}
+.fplus{text-align:center;font-size:28px;font-weight:600;margin:0;line-height:1}
+.fgroups{display:flex;flex-direction:column;align-items:center;gap:6px;margin:8px auto 12px}
+.frow{display:flex;gap:5px;padding:4px 8px;border:2px dashed var(--line);border-radius:999px}
+.frow.dim{opacity:.35}
+.opts button .fr{font-size:28px}
+.top{display:flex;flex-wrap:wrap;align-items:center;gap:0 10px}
+.top h1{flex:1;margin:4px 0 10px}
+.top #mode{flex:1 0 100%;order:3}
+#lay{font:inherit;font-size:16px;font-weight:600;padding:6px 8px;border-radius:12px;border:3px solid var(--line);background:var(--card);color:var(--ink);margin-bottom:6px}
+.vis,.ctl{min-width:0}
+.ctl .opts{margin-top:10px}
+#tabs button{flex:1 1 0;min-width:0}
+#tabs button.fs{flex:1 0 30%}
+body[data-lay=phone] main{max-width:480px}
+body[data-lay=phone] .tabs button{font-size:19px;padding:8px 0}
+body[data-lay=phone] .dot{width:16px;height:16px}
+body[data-lay=phone] .grid{gap:4px}
+body[data-lay=phone] .q{font-size:46px}
+body[data-lay=ipad] main{max-width:1000px}
+body[data-lay=pc] main{max-width:1150px}
+@media (min-width:700px){
+body:not([data-lay=phone]) .top{flex-wrap:nowrap;gap:16px;margin-bottom:12px}
+body:not([data-lay=phone]) .top h1{flex:0 0 auto;margin:0}
+body:not([data-lay=phone]) .top #mode{flex:1;order:0;margin:0}
+body:not([data-lay=phone]) #lay{margin:0}
+body:not([data-lay=phone]) #tabs button.fs{flex:1 1 0}
+body:not([data-lay=phone]) .split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
+body:not([data-lay=phone]) .ctl{padding-top:6px}
+}
+body[data-lay=phone] .split{display:flex;flex-direction:column}
+body[data-lay=phone] .vis{display:contents}
+body[data-lay=phone] .vis>*{order:2}
+body[data-lay=phone] .vis>.q,body[data-lay=phone] .vis>.lg,body[data-lay=phone] .vis>.fbar,body[data-lay=phone] .vis>.fpie,body[data-lay=phone] .vis>.fplus,body[data-lay=phone] .vis>.msg{order:0}
+body[data-lay=phone] .ctl{order:1;margin-bottom:12px}
+body[data-lay=phone] .ldset .btn{font-size:15px;padding:8px 10px}
+body[data-lay=phone] .seg button{font-size:15px}
+@media (max-width:699px){
+.split{display:flex;flex-direction:column}
+.vis{display:contents}
+.vis>*{order:2}
+.vis>.q,.vis>.lg,.vis>.fbar,.vis>.fpie,.vis>.fplus,.vis>.msg{order:0}
+.ctl{order:1;margin-bottom:12px}
+.ldset .btn{font-size:15px;padding:8px 10px}
+.seg button{font-size:15px}
+}
 :focus-visible{outline:4px solid #E0A100;outline-offset:2px}
 </style>
 </head>
 <body>
 <main>
+<div class="top">
 <h1>Maths practice</h1>
 <div class="tabs seg" id="mode"></div>
+<label for="lay" style="position:absolute;left:-9999px">Screen size</label>
+<select id="lay"><option value="ipad">iPad</option><option value="phone">Phone</option><option value="pc">Computer</option></select>
+</div>
 <div class="tabs" id="tabs"></div>
 <div id="app"></div>
 <div class="row" style="margin-top:6px">
 <button class="btn" id="vw"></button>
+<button class="btn" id="mf"></button>
 <button class="btn" id="th">Dark / light</button>
 </div>
 <p class="stars" id="st"></p>
 </main>
 <script>
 var $=function(s){return document.querySelector(s)};var TS=[3,4,6,7,8,12];
-var tbl=6,view='p',cur=null,done=false,stars=0,miss={},tried=[],msg='',msgC='',showTrick=false,opts=[];
-try{stars=+localStorage.getItem('tt-stars')||0;miss=JSON.parse(localStorage.getItem('tt-miss')||'{}')}catch(e){}
-function save(){try{localStorage.setItem('tt-stars',stars);localStorage.setItem('tt-miss',JSON.stringify(miss))}catch(e){}}
+var tbl='m',view='p',cur=null,done=false,stars=0,miss={},tried=[],days={},msg='',msgC='',showTrick=false,opts=[];
+try{stars=+localStorage.getItem('tt-stars')||0;miss=JSON.parse(localStorage.getItem('tt-miss')||'{}');days=JSON.parse(localStorage.getItem('tt-days')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('tt-stars',stars);localStorage.setItem('tt-miss',JSON.stringify(miss));localStorage.setItem('tt-days',JSON.stringify(days))}catch(e){}}
+function today(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
+function lvl(k){return Math.min((days[k]||[]).length,3)}
+function nMastered(ts){var c=0;ts.forEach(function(t){for(var n=2;n<=12;n++)if(lvl(t+'x'+n)>=3)c++});return c}
 function say(s){try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(s);u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
 function sp(n){return n<=2?[n,0]:n==3?[2,1]:n==4?[2,2]:n==5?[5,0]:n<=9?[5,n-5]:n==10?[10,0]:[10,n-10]}
 function trick(t,n){var s=sp(n),a=s[0],b=s[1],p=t*n;
@@ -78,18 +144,21 @@ if(n==5)return 'Half of 10 × '+t+' ('+10*t+') is '+p;
 return a+' × '+t+' = '+a*t+', then '+b+' × '+t+' = '+b*t+'. So '+a*t+' + '+b*t+' = '+p}
 function accent(t){return {3:'#A63D5E',4:'#3B6FB0',6:'#167070',7:'#6847B8',8:'#B85A12',12:'#5A7A1F'}[t]||'#2F5D8A'}
 function pick(){var ts=tbl=='m'?TS:[tbl],pool=[];
-ts.forEach(function(t){for(var n=2;n<=12;n++){var k=t+'x'+n,w=1+3*(miss[k]||0);if(cur&&cur.t==t&&cur.n==n)w=0;for(var i=0;i<w;i++)pool.push({t:t,n:n})}});
-cur=pool[Math.floor(Math.random()*pool.length)];done=false;tried=[];msg='';showTrick=false;
+ts.forEach(function(t){for(var n=2;n<=12;n++){var k=t+'x'+n,w=(lvl(k)>=3?1:3)+3*(miss[k]||0);if(cur&&cur.t==t&&cur.n==n)w=0;for(var i=0;i<w;i++)pool.push({t:t,n:n})}});
+var f=pool[Math.floor(Math.random()*pool.length)];setFact(f.t,f.n)}
+function setFact(t,n){cur={t:t,n:n};done=false;tried=[];msg='';showTrick=false;
 var p=cur.t*cur.n,c=[p,p+cur.t,p-cur.t,p+1,p-1,p+10,p-10].filter(function(x,i,a){return x>0&&a.indexOf(x)==i});
 var d=c.slice(1).sort(function(){return Math.random()-.5}).slice(0,2);
 opts=[p].concat(d).sort(function(){return Math.random()-.5})}
 function answer(v){if(done||tried.indexOf(v)>-1)return;var k=cur.t+'x'+cur.n;
-if(v==cur.t*cur.n){done=true;stars++;if(tried.length==0&&miss[k])miss[k]--;msg='Yes! '+cur.t+' × '+cur.n+' = '+v;msgC='good';showTrick=true}
-else{tried.push(v);miss[k]=(miss[k]||0)+1;msg='Not yet. Look at the dots and try again.';msgC='no';showTrick=true}
+if(v==cur.t*cur.n){done=true;stars++;msg='Yes! '+cur.t+' × '+cur.n+' = '+v;msgC='good';showTrick=true;
+if(tried.length==0){if(miss[k])miss[k]--;var dl=days[k]||(days[k]=[]),was=lvl(k);if(dl.indexOf(today())<0)dl.push(today());
+if(was<3&&lvl(k)>=3)msg+='. You have mastered this fact! ★'}}
+else{if(tried.length==0&&days[k]&&days[k].length)days[k].pop();tried.push(v);miss[k]=(miss[k]||0)+1;msg='Not yet. Look at the dots and try again.';msgC='no';showTrick=true}
 save();draw()}
 function dots(t,n){var s=sp(n)[0],h='<div class="grid" style="grid-template-columns:repeat('+t+',19px)">';
 for(var r=0;r<n;r++)for(var c=0;c<t;c++)h+='<div class="dot '+(r<s?'A':'B')+'"></div>';return h+'</div>'}
-var mode='t',dv=6,ldDig=2,ldRem=false,watch=false,ld=null,k=0,ans=false,ldMsg='',ldOpts=[],ldTried=[];
+var mode='t',dv='m',ldDig=2,ldRem=false,watch=false,ld=null,k=0,ans=false,ldMsg='',ldOpts=[],ldTried=[];
 var STEPC={div:'#6847B8',mul:'#B85A12',sub:'#167070',down:'#3B6FB0'},STEPN={div:'Divide',mul:'Multiply',sub:'Subtract',down:'Bring down'};
 function sh(a){return a.sort(function(){return Math.random()-.5})}
 function ldNew(){var ds=dv=='m'?[3,4,6,7,8]:[dv],d=ds[Math.floor(Math.random()*ds.length)],lo=ldDig==2?10:100,hi=ldDig==2?99:999,qa=Math.ceil(lo/d),qb=Math.floor(hi/d),qq=qa+Math.floor(Math.random()*(qb-qa+1)),N=d*qq;
@@ -119,49 +188,141 @@ function drawLD(){if(!ld)ldNew();var d=ld.d,s=ld.st[k],fin=k>=ld.st.length,h='',
 document.documentElement.style.setProperty('--a',accent(d));
 [3,4,6,7,8,'m'].forEach(function(t){tb+='<button class="t'+t+(t==dv?' on':'')+'" data-d="'+t+'">'+(t=='m'?'Mix':t)+'</button>'});
 $('#tabs').innerHTML=tb;
-h+='<div class="row" style="margin-bottom:12px"><button class="btn" data-c="dig">'+ldDig+' digits</button><button class="btn" data-c="rem">'+(ldRem?'With remainders':'No remainders')+'</button><button class="btn" data-c="watch">'+(watch?'Watch me':'Your turn')+'</button></div>';
-h+='<div class="card"><p class="q" style="font-size:40px">'+ld.N+' ÷ '+d+'</p>'+ldGrid();
+h+='<div class="row ldset" style="margin-bottom:12px"><button class="btn" data-c="dig">'+ldDig+' digits</button><button class="btn" data-c="rem">'+(ldRem?'With remainders':'No remainders')+'</button><button class="btn" data-c="watch">'+(watch?'Watch me':'Your turn')+'</button></div>';
+h+='<div class="card"><div class="split"><div class="vis"><p class="q" style="font-size:40px">'+ld.N+' ÷ '+d+'</p>'+ldGrid()+'<div class="legend" style="text-align:left;margin-top:10px">Your '+d+' times table</div><div>';
+for(var n=1;n<=10;n++)h+='<span class="chip2">'+d*n+'</span>';
+h+='</div></div><div class="ctl">';
 if(fin){var qs=ld.st.filter(function(x){return x.t=='div'}).map(function(x){return x.q}).join(''),rm=ld.st[ld.st.length-1].rem;
 h+='<p class="msg good">Done! '+ld.N+' ÷ '+d+' = '+qs+(rm?' remainder '+rm:'')+'</p><button class="btn main" id="lnew">New problem</button>'}
 else{h+='<span class="chip" style="background:'+STEPC[s.t]+'">'+STEPN[s.t]+'</span><p class="msg" style="margin-top:8px">'+ldQ(s)+'</p>';
 if(ans)h+='<div class="trick">'+ldWhy(s)+'</div><button class="btn main" id="ln">Next step</button>';
 else{if(ldMsg)h+='<p class="msg no">'+ldMsg+'</p>';
 h+=s.t=='down'?'<button class="btn main" data-l="d">Bring down the '+s.dg+'</button>':'<div class="opts" style="margin-top:10px">'+ldOpts.map(function(o){return '<button data-l="'+o+'" class="'+(ldTried.indexOf(o)>-1?'bad':'')+'">'+o+'</button>'}).join('')+'</div>'}}
-h+='<div class="row" style="margin-top:12px"><button class="btn" id="lh">Hear it</button></div></div>';
-h+='<div class="card"><div class="legend" style="text-align:left">Your '+d+' times table</div><div>';
-for(var n=1;n<=10;n++)h+='<span class="chip2">'+d*n+'</span>';
-h+='</div></div><div class="card"><div class="legend" style="text-align:left">The steps. Say it: Dad, Mum, Sister, Brother, Rover</div>';
+h+='<div class="row" style="margin-top:12px"><button class="btn" id="lh">Hear it</button></div></div></div></div>';
+h+='<div class="card"><div class="legend" style="text-align:left">The steps. Say it: Dad, Mum, Sister, Brother, Rover</div>';
 [['div','Dad'],['mul','Mum'],['sub','Sister'],['down','Brother']].forEach(function(x){h+='<div style="margin:6px 0"><span class="chip" style="background:'+STEPC[x[0]]+'">'+x[1]+'</span> '+STEPN[x[0]]+'</div>'});
 h+='<div style="margin:6px 0"><span class="chip" style="background:#4A5F72">Rover</span> Repeat until no digits are left</div></div>';
 $('#app').innerHTML=h}
+var fSub='p',fPick='m',fq=null,fDone=false,fTried=[],fMsg='',fMsgC='',fTrick=false,fOpts=[];
+var FSUB=[['p','What is it?','#3B6FB0'],['o','Of a number','#6847B8'],['a','Add','#167070'],['s','Take away','#B85A12'],['m','Mix','#2F5D8A']];
+var FNM={2:['half','halves'],3:['third','thirds'],4:['quarter','quarters'],5:['fifth','fifths'],6:['sixth','sixths'],7:['seventh','sevenths'],8:['eighth','eighths'],10:['tenth','tenths'],12:['twelfth','twelfths']};
+function rnd(a,b){return a+Math.floor(Math.random()*(b-a+1))}
+function one(a){return a[Math.floor(Math.random()*a.length)]}
+function fw(n,d){return (n==1?'one ':n+' ')+FNM[d][n==1?0:1]}
+function frac(n,d){return '<span class="fr"><span>'+n+'</span><span>'+d+'</span></span>'}
+function fillOf(c){return c=='A'?'var(--a)':c=='B'?'var(--dotB)':'var(--card)'}
+function bar(d,f){var w=300,h=56,pw=w/d,s='<svg class="fbar" viewBox="-3 -3 '+(w+6)+' '+(h+6)+'" aria-hidden="true">';
+for(var i=0;i<d;i++){var c=f(i),x=i*pw;s+='<rect x="'+x+'" y="0" width="'+pw+'" height="'+h+'" style="fill:'+fillOf(c=='X'?'A':c)+';stroke:var(--ink);stroke-width:2.5'+(c=='X'?';fill-opacity:.25':'')+'"/>';
+if(c=='X')s+='<path d="M'+(x+8)+' 8L'+(x+pw-8)+' '+(h-8)+'M'+(x+pw-8)+' 8L'+(x+8)+' '+(h-8)+'" style="stroke:var(--ink);stroke-width:3;stroke-linecap:round"/>'}
+return s+'</svg>'}
+function pie(d,n){var r=72,c=76,s='<svg class="fpie" viewBox="0 0 152 152" aria-hidden="true">';
+for(var i=0;i<d;i++){var a0=(i/d-.25)*2*Math.PI,a1=((i+1)/d-.25)*2*Math.PI;
+s+='<path d="M'+c+' '+c+'L'+(c+r*Math.cos(a0)).toFixed(2)+' '+(c+r*Math.sin(a0)).toFixed(2)+'A'+r+' '+r+' 0 '+(1/d>.5?1:0)+' 1 '+(c+r*Math.cos(a1)).toFixed(2)+' '+(c+r*Math.sin(a1)).toFixed(2)+'Z" style="fill:'+fillOf(i<n?'A':'')+';stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round"/>'}
+return s+'</svg>'}
+function fracOpts(ok,miss,others){var o=others.filter(function(x,i,a){var p=x.split('/');return +p[0]>0&&+p[1]>0&&x!=ok&&x!=miss&&a.indexOf(x)==i}),pk=[ok];
+var mp=miss&&miss!=ok&&+miss.split('/')[0]>0&&+miss.split('/')[1]>0;if(mp)pk.push(miss);
+return sh(pk.concat(sh(o).slice(0,3-pk.length)))}
+function numOpts(c,step){return sh([c].concat(sh([c+1,c-1,c+step,c-step,c+2].filter(function(v,i,a){return v>0&&v!=c&&a.indexOf(v)==i})).slice(0,2)))}
+var FDEN={p:[2,3,4,5,6,8,10,12],o:[2,3,4,5,6,7,8,10,12],a:[3,4,5,6,8,10,12],s:[3,4,5,6,8,10,12]},fLast=0;
+function fKey(sub,d){return 'f'+sub+d}
+function wd(){var pool=[];FDEN[fSub].forEach(function(d){var k=fKey(fSub,d),w=(lvl(k)>=3?1:3)+3*(miss[k]||0);if(d==fLast)w=0;for(var i=0;i<w;i++)pool.push(d)});return one(pool)}
+function fNew(fd,kind){fSub=kind||(fPick=='m'?one(['p','o','a','s'].filter(function(x){return x!=fSub})):fPick);fDone=false;fTried=[];fMsg='';fTrick=false;var d,n,a,b;
+if(fSub=='p'){d=fd||wd();n=rnd(1,d-1);fq={d:d,n:n,pie:Math.random()<.5&&d<=8};fOpts=fracOpts(n+'/'+d,(d-n)+'/'+d,[n+'/'+(d-n),d+'/'+n,(n+1)+'/'+d,(n-1)+'/'+d,n+'/'+(d+1)])}
+else if(fSub=='o'){d=fd||wd();var k=rnd(2,d>=7?5:10);a=rnd(1,d-1);if(Math.random()<.35)a=1;fq={d:d,k:k,a:a,N:d*k,step:0};fOpts=numOpts(k,d)}
+else if(fSub=='a'){d=fd||wd();a=rnd(1,d-2);b=rnd(1,d-a);var c=a+b;fq={d:d,a:a,b:b,c:c};fOpts=fracOpts(c+'/'+d,c+'/'+(2*d),[(c+1)+'/'+d,(c-1)+'/'+d,a+'/'+d])}
+else{d=fd||wd();a=rnd(2,d);b=rnd(1,a-1);var c=a-b;fq={d:d,a:a,b:b,c:c};fOpts=fracOpts(c+'/'+d,(a+b)+'/'+d,[(c+1)+'/'+d,(c-1)+'/'+d,c+'/'+(d-b)])}}
+function fTag(){fq.key=fKey(fSub,fq.d);fq.err=false;fLast=fq.d}
+function fRight(){var q=fq;return fSub=='p'?q.n+'/'+q.d:fSub=='o'?(q.step==0?q.k:q.a*q.k):q.c+'/'+q.d}
+function fTrickTxt(){var q=fq;
+if(fSub=='p')return 'Count all the parts: '+q.d+'. That is the bottom number. Count the coloured parts: '+q.n+'. That is the top number.';
+if(fSub=='o')return q.step==0?'Share '+q.N+' into '+q.d+' equal groups. '+q.N+' ÷ '+q.d+' = '+q.k+'. (Think: '+q.d+' × '+q.k+' = '+q.N+')':q.a+' groups of '+q.k+': '+q.a+' × '+q.k+' = '+q.a*q.k+'.';
+if(fSub=='a')return 'The pieces are the same size, so the bottom number stays '+q.d+'. Just add the tops: '+q.a+' + '+q.b+' = '+q.c+'.'+(q.c==q.d?' '+q.d+' '+FNM[q.d][1]+' make one whole!':'');
+return 'The pieces are the same size, so the bottom number stays '+q.d+'. Just take away the tops: '+q.a+' − '+q.b+' = '+q.c+'.'}
+function fSayQ(){var q=fq;if(fSub=='p')return 'What fraction is coloured?';
+if(fSub=='o')return q.step==0?'Share '+q.N+' into '+q.d+' equal groups. How many in each group?':(fDone?fw(q.a,q.d)+' of '+q.N+' is '+q.a*q.k:'Now take '+q.a+' groups. '+q.a+' times '+q.k+' is?');
+return fw(q.a,q.d)+(fSub=='a'?' add ':' take away ')+fw(q.b,q.d)}
+function fAns(v){if(fDone||fTried.indexOf(v)>-1)return;var q=fq;
+if(v==String(fRight())){
+if(fSub=='o'&&q.step==0&&q.a>1){q.step=1;fTried=[];fMsg='Yes! '+q.k+' in each group.';fMsgC='good';fTrick=false;fOpts=numOpts(q.a*q.k,q.k)}
+else{if(fSub=='o'&&q.step==0)q.step=1;fDone=true;stars++;fTrick=true;fMsgC='good';var newM=false;
+if(!q.err){if(miss[q.key])miss[q.key]--;var dl=days[q.key]||(days[q.key]=[]),was=lvl(q.key);if(dl.indexOf(today())<0)dl.push(today());newM=was<3&&lvl(q.key)>=3}
+fMsg=fSub=='p'?'Yes! '+q.n+'/'+q.d+' ('+fw(q.n,q.d)+') is coloured.':fSub=='o'?'Yes! '+q.a+'/'+q.d+' of '+q.N+' = '+q.a*q.k:'Yes! '+q.a+'/'+q.d+(fSub=='a'?' + ':' − ')+q.b+'/'+q.d+' = '+q.c+'/'+q.d;
+if(newM)fMsg+='. You have mastered '+FNM[q.d][1]+' here! ★';save()}}
+else{if(!q.err){q.err=true;miss[q.key]=(miss[q.key]||0)+1;if(days[q.key]&&days[q.key].length)days[q.key].pop();save()}fTried.push(v);fMsg='Not yet. Look at the picture and try again.';fMsgC='no';fTrick=true}draw()}
+function fDots(){var q=fq,h='<div class="fgroups">';for(var g=0;g<q.d;g++){h+='<div class="frow'+(q.step>0&&g>=q.a?' dim':'')+'">';for(var i=0;i<q.k;i++)h+='<div class="dot '+(q.step>0&&g<q.a?'A':'B')+'"></div>';h+='</div>'}return h+'</div>'}
+function fcol(sb){return FSUB.filter(function(x){return x[0]==sb})[0]}
+function drawFR(){if(view!='f'&&!fq){fNew();fTag()}var tb='',col=fcol(view=='f'&&fPick!='m'?fPick:fSub)[2],q,h,stepLine='';
+FSUB.forEach(function(x){tb+='<button class="fs'+(x[0]==fPick?' on':'')+'" data-fs="'+x[0]+'"'+(x[0]==fPick?' style="background:'+x[2]+'"':'')+'>'+x[1]+'</button>'});
+$('#tabs').innerHTML=tb;document.documentElement.style.setProperty('--a',col);
+var fm=0;['p','o','a','s'].forEach(function(sb){FDEN[sb].forEach(function(d){if(lvl(fKey(sb,d))>=3)fm++})});
+$('#st').textContent='★ '+stars+' stars earned'+(fm?' · '+fm+' fraction families mastered':'');
+$('#mf').textContent=view=='f'?'Back to practice':'My fractions';
+if(view=='f'){var out='<div class="card"><p class="legend" style="text-align:left">Each tile is one fraction family, like quarters. Get it right first time on 3 different days and it is mastered.</p>';
+(fPick=='m'?['p','o','a','s']:[fPick]).forEach(function(sb){var m=0,g=0,tl='',nm=fcol(sb)[1],col=fcol(sb)[2];
+FDEN[sb].forEach(function(d){var k=fKey(sb,d),L=lvl(k),pp='';if(L>=3)m++;else if(L>0)g++;
+for(var i=0;i<3;i++)pp+='<span class="pip'+(i<L?' on':'')+'"></span>';
+tl+='<button class="fact'+(L>=3?' m':'')+'" data-ff="'+sb+d+'" aria-label="'+FNM[d][1]+'" style="'+(L>=3?'background:'+col+';border-color:'+col:L>0?'border-color:'+col:'')+'">'+frac(1,d)+'<span class="pips" style="color:'+(L>=3?'#fff':col)+'">'+pp+'</span></button>'});
+out+='<div class="ftitle" style="color:'+col+'">'+nm+'</div><div class="legend" style="text-align:left;margin:0">'+(m?m+' mastered':'Just starting')+(g?', '+g+' getting there':'')+'</div><div class="facts">'+tl+'</div>'});
+$('#app').innerHTML=out+'</div><p class="legend">Tap a tile to practise it.</p>';return}
+q=fq;h='<div class="card"><div class="split"><div class="vis">';
+if(fSub=='p'){h+='<p class="msg" style="margin:0 0 4px;text-align:center">What fraction is coloured?</p>'+(q.pie?pie(q.d,q.n):bar(q.d,function(i){return i<q.n?'A':''}));
+if(fDone)h+='<p class="q fq">'+frac(q.n,q.d)+'</p>';h+='<p class="legend">'+q.d+' equal parts. '+q.n+' coloured.</p>'}
+else if(fSub=='o'){h+='<p class="q fq">'+frac(q.a,q.d)+' of '+q.N+' = <span>'+(fDone?q.a*q.k:'?')+'</span></p>'+fDots();
+h+='<p class="legend">'+q.N+' dots shared into '+q.d+' equal groups (one group on each line).</p>';
+stepLine='<p class="msg" style="margin-top:0"><span class="chip" style="background:'+(q.step==0?'#6847B8':'#B85A12')+'">Step '+(q.step+1)+'</span> '+(q.step==0?'Divide by the bottom: '+q.N+' ÷ '+q.d+' = ?':'Times by the top: '+q.a+' × '+q.k+' = ?')+'</p>'}
+else if(fSub=='a'){h+='<p class="q fq">'+frac(q.a,q.d)+' + '+frac(q.b,q.d)+' = <span>'+(fDone?frac(q.c,q.d):'?')+'</span></p>'+bar(q.d,function(i){return i<q.a?'A':''})+'<p class="fplus">+</p>'+bar(q.d,function(i){return i<q.b?'B':''});
+if(fDone)h+='<p class="fplus">=</p>'+bar(q.d,function(i){return i<q.a?'A':i<q.c?'B':''});h+='<p class="legend">Each bar has '+q.d+' equal parts.</p>'}
+else{h+='<p class="q fq">'+frac(q.a,q.d)+' − '+frac(q.b,q.d)+' = <span>'+(fDone?frac(q.c,q.d):'?')+'</span></p>'+bar(q.d,function(i){return i<q.c?'A':i<q.a?'X':''});
+h+='<p class="legend">Start with '+q.a+' coloured parts. Cross out '+q.b+'. How many are left?</p>'}
+h+='</div><div class="ctl">'+stepLine;
+if(!fDone)h+='<div class="opts">'+fOpts.map(function(o){var s=String(o),p=s.split('/');return '<button data-fa="'+s+'" class="'+(fTried.indexOf(s)>-1?'bad':'')+'">'+(p.length>1?frac(p[0],p[1]):s)+'</button>'}).join('')+'</div>';
+if(fMsg)h+='<p class="msg '+fMsgC+'">'+fMsg+'</p>';
+if(fTrick)h+='<div class="trick">'+fTrickTxt()+'</div>';
+h+='<div class="row" style="margin-top:12px"><button class="btn" id="fh">Hear it</button>'+(fTrick?'':'<button class="btn" id="ftk">Show the trick</button>')+'</div>';
+if(fDone)h+='<button class="btn main" id="fnx">Next one</button>';
+h+='</div></div></div>';
+var tips={p:'The bottom number tells you how many equal parts. The top number tells you how many you have.',o:'To find a fraction of a number: divide by the bottom, then times by the top.',a:'Adding fractions with the same bottom number: add the tops, keep the bottom.',s:'Taking away fractions with the same bottom number: take away the tops, keep the bottom.'};
+h+='<div class="card"><div class="legend" style="text-align:left;margin:0">Remember</div><div>'+tips[fSub]+'</div></div>';
+$('#app').innerHTML=h}
 function draw(){
-$('#mode').innerHTML=[['t','Times tables'],['l','Long division']].map(function(m){return '<button data-m="'+m[0]+'" class="'+(m[0]==mode?'on':'')+'">'+m[1]+'</button>'}).join('');
-$('#vw').hidden=mode=='l';$('#st').textContent='★ '+stars+' stars earned';
+$('#mode').innerHTML=[['t','Times tables'],['l','Long division'],['f','Fractions']].map(function(m){return '<button data-m="'+m[0]+'" class="'+(m[0]==mode?'on':'')+'">'+m[1]+'</button>'}).join('');
+$('#vw').hidden=mode!='t';$('#mf').hidden=mode=='l';$('#st').textContent='★ '+stars+' stars earned';
 if(mode=='l'){drawLD();return}
+if(mode=='f'){drawFR();return}
 var tb='';TS.concat('m').forEach(function(t){tb+='<button class="t'+t+(t==tbl?' on':'')+'" data-t="'+t+'">'+(t=='m'?'Mix':t)+'</button>'});
 $('#tabs').innerHTML=tb;
 document.documentElement.style.setProperty('--a',accent(tbl=='m'?cur&&cur.t:tbl));
-$('#vw').textContent=view=='p'?'Show chart':'Back to practice';
-$('#st').textContent='★ '+stars+' stars earned';
+$('#vw').textContent=view=='c'?'Back to practice':'Show chart';
+$('#mf').textContent=view=='f'?'Back to practice':'My facts';
+var nm=nMastered(TS);$('#st').textContent='★ '+stars+' stars earned'+(nm?' · '+nm+' facts mastered':'');
 var h='';
 if(view=='c'){var ts=tbl=='m'?TS:[tbl];
 h='<div class="card chart">';ts.forEach(function(t){h+='<div style="color:'+accent(t)+';font-weight:600;margin-top:6px">The '+t+' times table</div>';
 for(var n=1;n<=12;n++)h+='<button data-say="'+t+' times '+n+' equals '+t*n+'">'+t+' × '+n+' <b style="color:'+accent(t)+'">'+t*n+'</b></button>'});
 h+='</div><p class="legend">Tap a line to hear it.</p>'}
+else if(view=='f'){var ts=tbl=='m'?TS:[tbl];
+h='<div class="card"><p class="legend" style="text-align:left">Get a fact right first time on 3 different days and it is mastered. One dot fills each day.</p>';
+ts.forEach(function(t){var col=accent(t),m=0,g=0,tl='';
+for(var n=2;n<=12;n++){var L=lvl(t+'x'+n),pp='';if(L>=3)m++;else if(L>0)g++;
+for(var i=0;i<3;i++)pp+='<span class="pip'+(i<L?' on':'')+'"></span>';
+tl+='<button class="fact'+(L>=3?' m':'')+'" data-f="'+t+'x'+n+'" style="'+(L>=3?'background:'+col+';border-color:'+col:L>0?'border-color:'+col:'')+'">'+t+' × '+n+'<span class="pips" style="color:'+(L>=3?'#fff':col)+'">'+pp+'</span></button>'}
+h+='<div class="ftitle" style="color:'+col+'">The '+t+' times table</div><div class="legend" style="text-align:left;margin:0">'+(m?m+' mastered':'Just starting')+(g?', '+g+' getting there':'')+'</div><div class="facts">'+tl+'</div>'});
+h+='</div><p class="legend">Tap a fact to practise it.</p>'}
 else{if(!cur)pick();
-h='<div class="card"><p class="q">'+cur.t+' × '+cur.n+' = <span>'+(done?cur.t*cur.n:'?')+'</span></p>'+dots(cur.t,cur.n)+
-'<p class="legend">'+cur.n+' rows of '+cur.t+'. The two colours are two easier sums.</p>'+
+h='<div class="card"><div class="split"><div class="vis"><p class="q">'+cur.t+' × '+cur.n+' = <span>'+(done?cur.t*cur.n:'?')+'</span></p>'+dots(cur.t,cur.n)+
+'<p class="legend">'+cur.n+' rows of '+cur.t+'. The two colours are two easier sums.</p></div><div class="ctl">'+
 '<div class="opts">'+opts.map(function(o){return '<button data-a="'+o+'" class="'+(tried.indexOf(o)>-1?'bad':'')+(done&&o==cur.t*cur.n?' good':'')+'">'+o+'</button>'}).join('')+'</div>'+
 (msg?'<p class="msg '+msgC+'">'+msg+'</p>':'')+
 (showTrick?'<div class="trick">'+trick(cur.t,cur.n)+'</div>':'')+
 '<div class="row" style="margin-top:12px"><button class="btn" id="hear">Hear it</button>'+(showTrick?'':'<button class="btn" id="tk">Show the trick</button>')+'</div>'+
-(done?'<button class="btn main" id="nx">Next fact</button>':'')+'</div>'}
+(done?'<button class="btn main" id="nx">Next fact</button>':'')+'</div></div></div>'}
 $('#app').innerHTML=h}
 document.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
 if(b.dataset.t){tbl=b.dataset.t=='m'?'m':+b.dataset.t;cur=null;draw()}
 else if(b.dataset.a)answer(+b.dataset.a);
+else if(b.dataset.f){var fp=b.dataset.f.split('x');setFact(+fp[0],+fp[1]);view='p';draw();scrollTo(0,0)}
 else if(b.dataset.say)say(b.dataset.say);
-else if(b.dataset.m){mode=b.dataset.m;draw()}
+else if(b.dataset.m){mode=b.dataset.m;view='p';draw()}
 else if(b.dataset.d){dv=b.dataset.d=='m'?'m':+b.dataset.d;ld=null;draw()}
 else if(b.dataset.c){var cc=b.dataset.c;if(cc=='dig')ldDig=ldDig==2?3:2;else if(cc=='rem')ldRem=!ldRem;else watch=!watch;ld=null;draw()}
 else if(b.dataset.l)ldAns(b.dataset.l);
@@ -171,8 +332,18 @@ else if(b.id=='lh')say(ld.st[k]?ldQ(ld.st[k]).replace('×','times').replace('−
 else if(b.id=='hear')say(cur.t+' times '+cur.n+' equals '+cur.t*cur.n);
 else if(b.id=='tk'){showTrick=true;draw()}
 else if(b.id=='nx'){pick();draw()}
-else if(b.id=='vw'){view=view=='p'?'c':'p';draw()}
+else if(b.id=='vw'){view=view=='c'?'p':'c';draw()}
+else if(b.id=='mf'){view=view=='f'?'p':'f';draw()}
+else if(b.dataset.fs){fPick=b.dataset.fs;fq=null;draw()}
+else if(b.dataset.fa)fAns(b.dataset.fa);
+else if(b.dataset.ff){fNew(+b.dataset.ff.slice(1),b.dataset.ff[0]);fTag();view='p';draw();scrollTo(0,0)}
+else if(b.id=='fnx'){fq=null;draw()}
+else if(b.id=='ftk'){fTrick=true;draw()}
+else if(b.id=='fh')say(fSayQ().replace(/×/g,'times').replace(/÷/g,'divided by'));
 else if(b.id=='th'){var r=document.documentElement,dk=r.dataset.theme?r.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dk?'light':'dark'}});
+var lay='ipad';try{lay=localStorage.getItem('tt-lay')||'ipad'}catch(e){}
+function setLay(v){lay=v;document.body.dataset.lay=v;$('#lay').value=v;try{localStorage.setItem('tt-lay',v)}catch(e){}}
+$('#lay').addEventListener('change',function(){setLay(this.value)});setLay(lay);
 draw();
 </script>
 </body>
