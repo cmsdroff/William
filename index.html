@@ -93,7 +93,7 @@ body:not([data-lay=phone]) .ctl{padding-top:6px}
 body[data-lay=phone] .split{display:flex;flex-direction:column}
 body[data-lay=phone] .vis{display:contents}
 body[data-lay=phone] .vis>*{order:2}
-body[data-lay=phone] .vis>.q,body[data-lay=phone] .vis>.lg,body[data-lay=phone] .vis>.fbar,body[data-lay=phone] .vis>.fpie,body[data-lay=phone] .vis>.fplus,body[data-lay=phone] .vis>.msg{order:0}
+body[data-lay=phone] .vis>.q,body[data-lay=phone] .vis>.lg,body[data-lay=phone] .vis>.fbar,body[data-lay=phone] .vis>.fpie,body[data-lay=phone] .vis>.fplus,body[data-lay=phone] .vis>.msg,body[data-lay=phone] .vis>.wcard{order:0}
 body[data-lay=phone] .ctl{order:1;margin-bottom:12px}
 body[data-lay=phone] .ldset .btn{font-size:15px;padding:8px 10px}
 body[data-lay=phone] .seg button{font-size:15px}
@@ -101,11 +101,40 @@ body[data-lay=phone] .seg button{font-size:15px}
 .split{display:flex;flex-direction:column}
 .vis{display:contents}
 .vis>*{order:2}
-.vis>.q,.vis>.lg,.vis>.fbar,.vis>.fpie,.vis>.fplus,.vis>.msg{order:0}
+.vis>.q,.vis>.lg,.vis>.fbar,.vis>.fpie,.vis>.fplus,.vis>.msg,.vis>.wcard{order:0}
 .ctl{order:1;margin-bottom:12px}
 .ldset .btn{font-size:15px;padding:8px 10px}
 .seg button{font-size:15px}
 }
+.wcard{border:4px solid;border-radius:20px;padding:0 0 16px;text-align:center;overflow:hidden;background:var(--card)}
+.wstage{color:#fff;font-weight:600;font-size:16px;padding:6px 10px}
+.wq{font-size:20px;margin:12px 14px 0;color:var(--mute)}
+.wemo{font-size:72px;line-height:1.2;margin:6px 0}
+.wtext{font-size:28px;font-weight:600;margin:0 16px;line-height:1.4}
+.wdots{display:flex;justify-content:center;gap:8px;margin:14px 0 0}
+.wdots span{width:14px;height:14px;border-radius:50%;border:2px solid var(--line)}
+.wdots span.on{background:var(--a);border-color:var(--a)}
+.wlist{margin:6px 0 0;padding-left:0;list-style:none}.wlist li{margin:6px 0}
+.winput{font:inherit;font-size:20px;padding:8px 12px;border-radius:12px;border:3px solid var(--line);background:var(--card);color:var(--ink);min-width:0}
+.btn.sel{background:var(--a);border-color:var(--a);color:#fff}
+.btn.small{font-size:15px;padding:6px 12px;margin-top:6px}
+.wplan{max-width:760px;margin-left:auto;margin-right:auto}
+.wtitle{font-size:24px;margin:0 0 4px;font-weight:600}
+.wmtn{display:block;width:100%;max-width:360px;margin:0 auto 6px}
+.wstep{border-left:8px solid;padding:10px 14px;margin:12px 0;border-radius:8px;background:var(--bg)}
+.wstep h3{margin:0 0 4px;font-size:19px}
+.wsense{margin-top:6px;font-size:17px}
+.wmodel{margin:8px 0 0}
+.tick{display:flex;gap:12px;align-items:center;width:100%;text-align:left;font:inherit;font-size:18px;background:none;border:0;color:var(--ink);padding:6px 0;cursor:pointer}
+.tick .bx{flex:0 0 30px;height:30px;border:3px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:600}
+.tick.on .bx{background:var(--ok);border-color:var(--ok);color:#fff}
+.opts.four{grid-template-columns:repeat(2,1fr)}
+.opts button.wbtn{font-size:21px;padding:10px 4px;line-height:1.3}
+.wsm{font-size:34px}
+.wsaved{margin:8px 0;flex-wrap:nowrap;align-items:stretch}
+body[data-lay=phone] .wemo{font-size:52px}body[data-lay=phone] .wtext{font-size:23px}body[data-lay=phone] #tabs button.fs{font-size:16px;padding:6px 2px}
+@media (max-width:699px){.wemo{font-size:52px}.wtext{font-size:23px}#tabs button.fs{font-size:16px;padding:6px 2px}}
+@media print{body{background:#fff;color:#000}main>*:not(#app),.noprint{display:none!important}#app>*:not(.wplan){display:none!important}.wplan{border:0;max-width:none}.wstep{break-inside:avoid}}
 :focus-visible{outline:4px solid #E0A100;outline-offset:2px}
 </style>
 </head>
@@ -134,7 +163,7 @@ function save(){try{localStorage.setItem('tt-stars',stars);localStorage.setItem(
 function today(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
 function lvl(k){return Math.min((days[k]||[]).length,3)}
 function nMastered(ts){var c=0;ts.forEach(function(t){for(var n=2;n<=12;n++)if(lvl(t+'x'+n)>=3)c++});return c}
-function say(s){try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(s);u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+function say(s){try{speechSynthesis.cancel();s=s.replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF\uFE0F]/gu,'');var u=new SpeechSynthesisUtterance(s);u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
 function sp(n){return n<=2?[n,0]:n==3?[2,1]:n==4?[2,2]:n==5?[5,0]:n<=9?[5,n-5]:n==10?[10,0]:[10,n-10]}
 function trick(t,n){var s=sp(n),a=s[0],b=s[1],p=t*n;
 if(n==1)return 'Anything times 1 stays the same: '+t;
@@ -284,11 +313,162 @@ h+='</div></div></div>';
 var tips={p:'The bottom number tells you how many equal parts. The top number tells you how many you have.',o:'To find a fraction of a number: divide by the bottom, then times by the top.',a:'Adding fractions with the same bottom number: add the tops, keep the bottom.',s:'Taking away fractions with the same bottom number: take away the tops, keep the bottom.'};
 h+='<div class="card"><div class="legend" style="text-align:left;margin:0">Remember</div><div>'+tips[fSub]+'</div></div>';
 $('#app').innerHTML=h}
+/* ===== Creative writing ===== */
+var NAMES=[['Maya','she'],['Leo','he'],['Zara','she'],['Sam','he'],['Ava','she'],['Kai','he'],['Isla','she'],['Finn','he'],['Ruby','she'],['Omar','he'],['Priya','she'],['Theo','he'],['Nia','she'],['Max','he']];
+var PR={he:{he:'he',him:'him',his:'his'},she:{he:'she',him:'her',his:'her'}};
+var DETS=['who is brave but a bit clumsy','who loves building things','who is scared of the dark','who never gives up','who is always asking questions','who has a big secret','who has just moved to a new town','who has a loyal dog called Biscuit','who dreams of being an explorer','who is shy but very kind','who keeps a lucky coin in {his} pocket','who notices things nobody else sees'];
+/* [where they are, "the" place, emoji, see, hear, smell/taste, feel] */
+var SETS=[
+['in a dark forest','the dark forest','🌲','Twisted trees reached out like bony fingers.','Twigs snapped and an owl hooted.','The air smelled of damp earth and pine.','Cold mist brushed against {n}\'s cheeks.'],
+['on a stormy beach','the stormy beach','🌊','Grey waves crashed onto the rocks.','Seagulls screamed above the howling wind.','The air tasted of salt and seaweed.','Sand stung {n}\'s bare legs.'],
+['in an old castle','the old castle','🏰','Cobwebs hung from the crumbling walls.','A heavy door creaked somewhere above.','It smelled of dust and old candles.','The stone was icy under {n}\'s fingers.'],
+['at a busy market','the busy market','🧺','Bright stalls were piled high with fruit.','Sellers shouted and music played.','Hot bread and spices filled the air.','People bumped against {n}\'s shoulders.'],
+['on a snowy mountain','the snowy mountain','🏔️','White peaks glittered in the sun.','Boots crunched in the deep snow.','The air was fresh and icy.','The wind bit at {n}\'s fingers.'],
+['on a spaceship','the spaceship','🚀','Tiny lights blinked on every wall.','The engines hummed and an alarm beeped.','It smelled of hot metal.','{n} floated, as light as a feather.'],
+['in an empty school at night','the empty school','🏫','Long shadows stretched down the corridor.','A clock ticked and a door banged.','It smelled of floor polish and old books.','The door handle was cold in {n}\'s hand.'],
+['in a steamy jungle','the jungle','🌴','Giant leaves hid bright parrots.','Monkeys chattered and rain dripped.','Sweet flowers and wet leaves filled the air.','The sticky heat clung to {n}\'s skin.'],
+['at a funfair','the funfair','🎡','Coloured lights flashed and spun.','People screamed on the rides.','Candyfloss and hot doughnuts smelled sweet.','The wind rushed past {n}\'s face.'],
+['on a coral reef under the sea','the coral reef','🐠','Silver fish shimmered past.','Bubbles popped in the silence.','The water tasted of salt.','The cold water pressed against {n}.']];
+var WHENS=[['early in the morning, as the sun came up','🌅'],['at midnight, under a full moon','🌕'],['on a stormy afternoon','⛈️'],['on the last day of the summer holidays','☀️'],['on a frosty winter evening','❄️'],['on the morning of a big school trip','🚌'],['on {n}\'s birthday','🎂'],['during a power cut','🕯️']];
+var FEELS=[
+['nervous','😬',['Butterflies fluttered in {n}\'s tummy.','{n}\'s hands were hot and sweaty.','{n} bit {his} lip and looked around.']],
+['scared','😨',['{n}\'s heart pounded like a drum.','{His} legs froze to the spot.','A shiver ran down {his} spine.']],
+['excited','🤩',['{n} bounced up and down on {his} toes.','{His} eyes sparkled.','{He} could not stop grinning.']],
+['angry','😠',['{n} clenched {his} fists.','{His} face went hot and red.','{He} stamped {his} foot.']],
+['sad','😢',['{n}\'s eyes filled with tears.','{His} shoulders slumped.','A lump grew in {his} throat.']],
+['happy','😊',['{n} smiled from ear to ear.','{He} skipped along, humming a song.','{His} heart felt as light as a balloon.']],
+['surprised','😲',['{n}\'s mouth dropped open.','{His} eyebrows shot up.','{He} gasped and took a step back.']],
+['curious','🤔',['{n} tilted {his} head.','{He} crept closer to get a better look.','{His} eyes narrowed as {he} studied it.']],
+['lonely','😔',['{n} sat on {his} own.','{He} stared down at the floor.','The silence felt heavy around {him}.']],
+['bored','🥱',['{n} sighed loudly.','{He} drummed {his} fingers on the table.','{His} eyelids drooped.']]];
+/* [plan (now), story sentence (past), emoji] */
+var PROBS=[['finds an old map with an X on it','found an old map with an X on it','📜'],['gets lost and cannot find the way back','got lost and could not find the way back','🧭'],['hears a strange noise behind a locked door','heard a strange noise behind a locked door','🚪'],['discovers a tiny creature that needs help','discovered a tiny creature that needed help','🐉'],['loses something very precious','lost something very precious','💍'],['finds a door that was not there yesterday','found a door that had not been there the day before','✨'],['sees a friend in danger','saw a friend in danger','🆘'],['gets trapped as the storm gets worse','got trapped as the storm got worse','🌪️'],['finds a box that glows','found a box that glowed','📦'],['is told a secret that must be kept','was told a secret that had to be kept','🤫']];
+var FIXES=[['has a clever idea','had a clever idea','💡'],['is brave and asks for help','was brave and asked for help','🙋'],['teams up with a new friend','teamed up with a new friend','🤝'],['follows the clues one by one','followed the clues one by one','🔍'],['faces the fear and keeps going','faced the fear and kept going','💪'],['remembers something {his} gran once said','remembered something {his} gran once said','👵'],['finds a hidden path','found a hidden path','🛤️'],['uses something from {his} pocket','used something from {his} pocket','🎒']];
+var ENDS=[['gets home safe and feels braver than before','got home safe and felt braver than before','🏠'],['makes a new best friend','had made a new best friend','💛'],['learns that being different is a strength','learned that being different is a strength','🌈'],['keeps the secret forever','kept the secret forever','🔐'],['goes back to where it all started, but everything feels different','went back to where it all started, but everything felt different','🔄'],['smiles, ready for the next adventure','smiled, ready for the next adventure','🌅']];
+var STG=[['Opening','#3B6FB0'],['Build-up','#167070'],['Problem','#A63D5E'],['Fix it','#6847B8'],['Ending','#B85A12']];
+var WARR={set:SETS,when:WHENS,feel:FEELS,prob:PROBS,fix:FIXES,end:ENDS};
+var CARDS=[['who',0,'Who is in your story?'],['set',0,'Where are they?'],['when',0,'When does it happen?'],['feel',1,'How do they feel at the start?'],['prob',2,'What goes wrong?'],['fix',3,'How do they fix it?'],['end',4,'How does it end?']];
+var SENSE=[['👀','See'],['👂','Hear'],['👃','Smell or taste'],['✋','Feel']];
+var OPENERS=[
+['-ing start','🏃','Start with an -ing word, then a comma.','Shivering, {n} looked around {place}.'],
+['-ed start','😨','Start with an -ed word, then a comma.','Terrified, {n} froze on the spot.'],
+['Like a ...','🦊','Compare it to something. This is a simile.','Like a fox, {n} crept forward without a sound.'],
+['Where','📍','Start by saying where it happens.','Behind the old door, something moved.'],
+['How','🐢','Start with a word ending in -ly, then a comma.','Slowly, {n} turned around.'],
+['When','⏰','Start with a time word or phrase.','Moments later, the lights went out.'],
+['Speech','💬','Start with someone talking. Use speech marks.','"Who is there?" whispered {n}.'],
+['Question','❓','Ask the reader a question.','Would {n} ever find the way home?'],
+['Short and sharp','⚡','A very short sentence makes the reader jump.','{He} ran.'],
+['Sound word','💥','Start with a sound word. This is onomatopoeia.','CRASH! The window shattered into pieces.']];
+var TICKS=['Plan for 5 minutes first. (You just did!)','Write one paragraph for each part of the mountain.','Show feelings. Do not just tell them.','Use at least 2 senses.','Start sentences in different ways.','Use speech marks when someone talks.','At the end, check capital letters and full stops.'];
+var WSUB=[['b','Build a story','#3B6FB0'],['f','Feelings','#167070'],['s','Senses','#6847B8'],['o','Openers','#B85A12'],['p','My plans','#A63D5E']];
+var wSub='b',wP=null,wq=null,wDone=false,wTried=[],wMsg='',wMsgC='',wO=0,wPlans=[],wDel=-1,wNote='';
+try{wP=JSON.parse(localStorage.getItem('tt-wcur')||'null');wPlans=JSON.parse(localStorage.getItem('tt-plans')||'[]')}catch(e){}
+function wSave(){try{localStorage.setItem('tt-wcur',JSON.stringify(wP));localStorage.setItem('tt-plans',JSON.stringify(wPlans))}catch(e){}}
+function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
+function rOther(n,cur){var v;do{v=Math.floor(Math.random()*n)}while(n>1&&v==cur);return v}
+function W(){return wP||{name:'Sam',pr:'he',set:0}}
+function F(t,P){P=P||W();var p=PR[P.pr];return t.replace(/\{(\w+)\}/g,function(m,k){return k=='n'?P.name:k=='place'?SETS[P.set][1]:k=='He'?cap(p.he):k=='His'?cap(p.his):p[k]})}
+function wNew(){var nm=one(NAMES);wP={id:Date.now(),name:nm[0],pr:nm[1],det:rnd(0,DETS.length-1),step:0,ticks:[],star:false};
+for(var k in WARR)wP[k]=rnd(0,WARR[k].length-1);wSave()}
+function wShuf(k){if(k=='who'){var nm=one(NAMES.filter(function(x){return x[0]!=wP.name}));wP.name=nm[0];wP.pr=nm[1];wP.det=rOther(DETS.length,wP.det)}else wP[k]=rOther(WARR[k].length,wP[k]);wSave()}
+function cardText(k,P){P=P||W();var n=P.name;
+return k=='who'?n+', '+F(DETS[P.det],P):k=='set'?n+' is '+SETS[P.set][0]+'.':k=='when'?cap(F(WHENS[P.when][0],P))+'.':k=='feel'?n+' feels '+FEELS[P.feel][0]+'.':n+' '+F(WARR[k][P[k]][0],P)+'.'}
+function cardEmo(k,P){P=P||W();return k=='who'?(P.pr=='she'?'👧':'👦'):k=='set'?SETS[P.set][2]:k=='when'?WHENS[P.when][1]:k=='feel'?FEELS[P.feel][1]:WARR[k][P[k]][2]}
+function senseList(si){var s=SETS[si];return '<ul class="wlist">'+SENSE.map(function(x,i){return '<li>'+x[0]+' <b>'+x[1]+':</b> '+F(s[3+i])+'</li>'}).join('')+'</ul>'}
+function picture(k){var P=W();
+if(k=='who')return F('Close your eyes and picture {n}. What does {he} look like? What is {he} wearing?');
+if(k=='set')return 'Use your senses to describe it:'+senseList(P.set);
+if(k=='when')return F('Is it light or dark? Warm or cold? What can {n} hear?');
+if(k=='feel')return F('Do not just say "{n} was ')+FEELS[P.feel][0]+'". Show it:<ul class="wlist">'+FEELS[P.feel][2].map(function(s){return '<li>'+F(s)+'</li>'}).join('')+'</ul>';
+if(k=='prob')return F('What does {n} see first? What does {he} say? Try speech: "What was that?" whispered {n}.');
+if(k=='fix')return 'This is the exciting part! What is the brave or clever moment?';
+return F('How has {n} changed since the start? A great ending links back to the beginning.')}
+function models(P){P=P||W();var n=P.name,f=FEELS[P.feel][2];
+return [cap(F(WHENS[P.when][0],P))+', '+n+' was '+SETS[P.set][0]+'. '+F(SETS[P.set][3],P),
+F(f[0],P)+' '+F(f[1],P),'Suddenly, '+n+' '+F(PROBS[P.prob][1],P)+'.','Just in time, '+n+' '+F(FIXES[P.fix][1],P)+'.','Finally, '+n+' '+F(ENDS[P.end][1],P)+'.']}
+function notes(P){return [[cardText('who',P)+'.',cardText('set',P),cardText('when',P)],[cardText('feel',P)],[cardText('prob',P)],[cardText('fix',P)],[cardText('end',P)]]}
+function mountain(){var pts=[[40,112],[105,80],[165,30],[232,72],[288,112]],s='<svg viewBox="0 0 330 150" class="wmtn" aria-hidden="true"><path d="M8 140L70 100L120 70L165 18L210 55L255 92L322 140Z" style="fill:var(--bg);stroke:var(--line);stroke-width:3;stroke-linejoin:round"/>';
+pts.forEach(function(p,i){s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="15" style="fill:'+STG[i][1]+'"/><text x="'+p[0]+'" y="'+(p[1]+6)+'" text-anchor="middle" style="fill:#fff;font:600 17px Lexend,Verdana,sans-serif">'+(i+1)+'</text>'});
+return s+'</svg>'}
+function wTabs(){var tb='';WSUB.forEach(function(x){tb+='<button class="fs'+(x[0]==wSub?' on':'')+'" data-ws="'+x[0]+'"'+(x[0]==wSub?' style="background:'+x[2]+'"':'')+'>'+x[1]+'</button>'});$('#tabs').innerHTML=tb}
+function wQuiz(){wDone=false;wTried=[];wMsg='';
+if(wSub=='f'){var f=rOther(FEELS.length,wq&&wq.f),o=[f];while(o.length<3){var x=rnd(0,FEELS.length-1);if(o.indexOf(x)<0)o.push(x)}wq={f:f,s:rnd(0,2),opts:sh(o)}}
+else{var si=rOther(SETS.length,wq&&wq.si);wq={si:si,k:rnd(0,3)}}}
+function wAns(v){if(wDone||wTried.indexOf(v)>-1)return;var ok=wSub=='f'?v==wq.f:v==wq.k;
+if(ok){wDone=true;stars++;save();wMsg=wSub=='f'?'Yes! That shows '+W().name+' is '+FEELS[wq.f][0]+'.':'Yes! That is something you can '+SENSE[wq.k][1].toLowerCase()+'.';wMsgC='good'}
+else{wTried.push(v);wMsg=wSub=='f'?'Not yet. Read it again. What would your body do?':'Not yet. Which part of your body would notice this?';wMsgC='no'}draw()}
+function drawW(){wTabs();var col=WSUB.filter(function(x){return x[0]==wSub})[0][2],h='',P;
+document.documentElement.style.setProperty('--a',col);
+if(wSub=='b'){if(!wP)wNew();P=wP;
+if(P.step<7){var c=CARDS[P.step],k=c[0],sc=STG[c[1]][1];document.documentElement.style.setProperty('--a',sc);
+var dots='<div class="wdots">';for(var i=0;i<7;i++)dots+='<span class="'+(i<=P.step?'on':'')+'"></span>';dots+='</div>';
+h='<div class="card"><div class="split"><div class="vis"><div class="wcard" style="border-color:'+sc+'"><div class="wstage" style="background:'+sc+'">Card '+(P.step+1)+' of 7 · '+STG[c[1]][0]+'</div><p class="wq">'+c[2]+'</p><div class="wemo">'+cardEmo(k)+'</div><p class="wtext">'+esc(cardText(k))+'</p>'+dots+'</div></div><div class="ctl">';
+if(k=='who')h+='<div class="row" style="margin-bottom:10px"><input id="wname" class="winput" style="flex:1;width:auto" maxlength="14" aria-label="Character name" value="'+esc(P.name)+'"><button class="btn'+(P.pr=='he'?' sel':'')+'" data-pr="he">he</button><button class="btn'+(P.pr=='she'?' sel':'')+'" data-pr="she">she</button></div>';
+h+='<div class="trick" style="margin-top:0"><b>Picture it.</b> '+picture(k)+'</div>';
+h+='<div class="row" style="margin-top:12px"><button class="btn" data-wsay="'+esc(cardText(k))+'">Hear it</button><button class="btn" data-w="shuf">Another idea</button>'+(P.step>0?'<button class="btn" data-w="back">Back</button>':'')+'</div>';
+h+='<button class="btn main" data-w="keep">Keep this card ✓</button></div></div></div>';
+h+='<p class="legend">Not sure? Tap "Another idea" until one makes a picture in your head.</p>'}
+else{if(!P.star){P.star=true;stars++;save();wSave()}
+var md=models(P),nt=notes(P);h='<div class="card wplan"><h2 class="wtitle">'+esc(P.name)+'\'s story plan</h2>'+mountain();
+STG.forEach(function(s,i){h+='<div class="wstep" style="border-color:'+s[1]+'"><h3 style="color:'+s[1]+'">'+(i+1)+'. '+s[0]+'</h3><div>'+nt[i].map(esc).join(' ')+'</div>'+(i==0?'<div class="wsense">'+SENSE.map(function(x,j){return x[0]+' '+esc(F(SETS[P.set][3+j],P))}).join('<br>')+'</div>':'')+'<p class="wmodel"><span class="legend">Try saying:</span> '+esc(md[i])+'</p><button class="btn small noprint" data-wsay="'+esc(md[i])+'">Hear it</button></div>'});
+h+='<div class="trick"><b>Story hand.</b> Tell your story out loud before you write it. Hold up one finger for each part of the mountain.</div>';
+h+='<h3 style="margin:16px 0 4px">In the test</h3>'+TICKS.map(function(t,i){var on=P.ticks.indexOf(i)>-1;return '<button class="tick'+(on?' on':'')+'" data-wt="'+i+'"><span class="bx">'+(on?'✓':'')+'</span>'+t+'</button>'}).join('');
+if(wNote)h+='<p class="msg good">'+wNote+'</p>';
+h+='<div class="row noprint" style="margin-top:14px"><button class="btn" data-w="hearall">Hear my plan</button><button class="btn" data-w="print">Print</button><button class="btn" data-w="save">Save to My plans</button><button class="btn" data-w="edit">Change cards</button></div><button class="btn main noprint" data-w="new">New story</button></div>'}}
+else if(wSub=='f'||wSub=='s'){if(!wq||(wSub=='f')!=('f' in wq))wQuiz();
+if(wSub=='f'){var fs=FEELS[wq.f];
+h='<div class="card"><div class="split"><div class="vis"><div class="wcard" style="border-color:'+col+'"><div class="wstage" style="background:'+col+'">Show, do not tell</div><p class="wq">How does '+esc(W().name)+' feel?</p><p class="wtext" style="margin-top:14px">'+esc(F(fs[2][wq.s]))+'</p>'+(wDone?'<div class="wemo">'+fs[1]+'</div>':'<div style="height:16px"></div>')+'</div></div><div class="ctl">';
+if(!wDone)h+='<div class="opts" style="margin-top:0">'+wq.opts.map(function(o){return '<button class="wbtn '+(wTried.indexOf(o)>-1?'bad':'')+'" data-wf="'+o+'"><span class="wsm">'+FEELS[o][1]+'</span><br>'+FEELS[o][0]+'</button>'}).join('')+'</div>';
+if(wMsg)h+='<p class="msg '+wMsgC+'">'+wMsg+'</p>';
+if(wDone)h+='<div class="trick">Telling: "'+esc(W().name)+' was '+fs[0]+'."<br>Showing is better:<ul class="wlist">'+fs[2].map(function(s){return '<li>'+esc(F(s))+'</li>'}).join('')+'</ul></div>';
+h+='<div class="row" style="margin-top:12px"><button class="btn" data-wsay="'+esc(F(fs[2][wq.s]))+'">Hear it</button></div>'+(wDone?'<button class="btn main" data-w="next">Next one</button>':'')+'</div></div></div>'}
+else{var st=SETS[wq.si];
+h='<div class="card"><div class="split"><div class="vis"><div class="wcard" style="border-color:'+col+'"><div class="wstage" style="background:'+col+'">Which sense is it?</div><p class="wq">'+cap(st[0])+'</p><div class="wemo">'+st[2]+'</div><p class="wtext">'+esc(F(st[3+wq.k]))+'</p></div></div><div class="ctl">';
+if(!wDone)h+='<div class="opts four" style="margin-top:0">'+SENSE.map(function(x,i){return '<button class="wbtn '+(wTried.indexOf(i)>-1?'bad':'')+'" data-wn="'+i+'"><span class="wsm">'+x[0]+'</span><br>'+x[1]+'</button>'}).join('')+'</div>';
+if(wMsg)h+='<p class="msg '+wMsgC+'">'+wMsg+'</p>';
+if(wDone)h+='<div class="trick">All four senses '+st[0]+':'+senseList(wq.si)+'</div>';
+h+='<div class="row" style="margin-top:12px"><button class="btn" data-wsay="'+esc(F(st[3+wq.k]))+'">Hear it</button></div>'+(wDone?'<button class="btn main" data-w="next">Next one</button>':'')+'</div></div></div>'}
+h+='<div class="card"><div class="legend" style="text-align:left;margin:0">Remember</div><div>'+(wSub=='f'?'Readers love it when you <b>show</b> a feeling. Think: what would your face, hands and heart do?':'Use at least 2 senses when you describe a place. It helps the reader feel like they are there.')+'</div></div>'}
+else if(wSub=='o'){var o=OPENERS[wO];
+h='<div class="card"><div class="split"><div class="vis"><div class="wcard" style="border-color:'+col+'"><div class="wstage" style="background:'+col+'">Sentence opener '+(wO+1)+' of '+OPENERS.length+'</div><div class="wemo">'+o[1]+'</div><p class="wtext">'+o[0]+'</p><p class="wq" style="margin-bottom:0">'+o[2]+'</p></div></div><div class="ctl"><div class="trick" style="margin-top:0"><b>Example:</b><br><span style="font-size:22px">'+esc(F(o[3]))+'</span></div><p class="msg">Your turn: say a sentence about '+esc(W().name)+' that starts this way.</p>';
+h+='<div class="row" style="margin-top:12px"><button class="btn" data-wsay="'+esc(F(o[3]))+'">Hear it</button>'+(wO>0?'<button class="btn" data-w="oprev">Back</button>':'')+'</div><button class="btn main" data-w="onext">'+(wO<OPENERS.length-1?'Next opener':'Start again')+'</button></div></div></div>';
+h+='<div class="card"><div class="legend" style="text-align:left;margin:0">Remember</div><div>Examiners look for sentences that start in different ways. Try to use 3 different openers in every story.</div></div>'}
+else{h='<div class="card"><h2 class="wtitle">My plans</h2>';
+if(!wPlans.length)h+='<p>No saved plans yet. Build a story, then tap "Save to My plans".</p>';
+wPlans.forEach(function(p,i){h+='<div class="row wsaved"><button class="btn" style="flex:1;text-align:left" data-wp="'+i+'">'+cardEmo('set',p)+' '+esc(p.name)+' '+esc(SETS[p.set][0])+'<br><span class="legend">'+esc(p.saved||'')+'</span></button><button class="btn" data-wdel="'+i+'">'+(wDel==i?'Tap again to remove':'Remove')+'</button></div>'});
+h+='</div>'}
+$('#app').innerHTML=h;$('#st').textContent='★ '+stars+' stars earned'}
+function wClick(b){var d=b.dataset;
+if(d.ws){wSub=d.ws;wMsg='';wDel=-1;wNote='';if(wSub=='f'||wSub=='s')wq=null;draw();return true}
+if(d.wsay!=null){say(d.wsay);return true}
+if(d.pr){wP.pr=d.pr;wSave();draw();return true}
+if(d.wf!=null){wAns(+d.wf);return true}
+if(d.wn!=null){wAns(+d.wn);return true}
+if(d.wt!=null){var t=+d.wt,ix=wP.ticks.indexOf(t);if(ix>-1)wP.ticks.splice(ix,1);else wP.ticks.push(t);wSave();draw();return true}
+if(d.wp!=null){wP=JSON.parse(JSON.stringify(wPlans[+d.wp]));wP.step=7;wSub='b';wNote='';wSave();draw();scrollTo(0,0);return true}
+if(d.wdel!=null){var i=+d.wdel;if(wDel==i){wPlans.splice(i,1);wDel=-1;wSave()}else wDel=i;draw();return true}
+if(!d.w)return false;var a=d.w;wNote='';
+if(a=='keep'){wP.step++;wSave();draw();scrollTo(0,0)}
+else if(a=='shuf'){wShuf(CARDS[wP.step][0]);draw()}
+else if(a=='back'){wP.step--;wSave();draw()}
+else if(a=='edit'){wP.step=0;wSave();draw();scrollTo(0,0)}
+else if(a=='new'){wNew();draw();scrollTo(0,0)}
+else if(a=='hearall')say(models(wP).join(' '));
+else if(a=='print')window.print();
+else if(a=='save'){var c=JSON.parse(JSON.stringify(wP)),dt=new Date();c.saved=dt.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][dt.getMonth()]+' '+dt.getFullYear();
+var ix=-1;wPlans.forEach(function(p,i){if(p.id==c.id)ix=i});if(ix>-1)wPlans.splice(ix,1);wPlans.unshift(c);wPlans=wPlans.slice(0,20);wSave();wNote='Saved! Find it in My plans.';draw()}
+else if(a=='next'){wQuiz();draw()}
+else if(a=='onext'){wO=(wO+1)%OPENERS.length;draw()}
+else if(a=='oprev'){wO--;draw()}
+return true}
 function draw(){
-$('#mode').innerHTML=[['t','Times tables'],['l','Long division'],['f','Fractions']].map(function(m){return '<button data-m="'+m[0]+'" class="'+(m[0]==mode?'on':'')+'">'+m[1]+'</button>'}).join('');
-$('#vw').hidden=mode!='t';$('#mf').hidden=mode=='l';$('#st').textContent='★ '+stars+' stars earned';
+$('#mode').innerHTML=[['t','Times tables'],['l','Division'],['f','Fractions'],['w','Writing']].map(function(m){return '<button data-m="'+m[0]+'" class="'+(m[0]==mode?'on':'')+'">'+m[1]+'</button>'}).join('');
+$('#vw').hidden=mode!='t';$('#mf').hidden=mode=='l'||mode=='w';$('#st').textContent='★ '+stars+' stars earned';
 if(mode=='l'){drawLD();return}
 if(mode=='f'){drawFR();return}
+if(mode=='w'){drawW();return}
 var tb='';TS.concat('m').forEach(function(t){tb+='<button class="t'+t+(t==tbl?' on':'')+'" data-t="'+t+'">'+(t=='m'?'Mix':t)+'</button>'});
 $('#tabs').innerHTML=tb;
 document.documentElement.style.setProperty('--a',accent(tbl=='m'?cur&&cur.t:tbl));
@@ -318,6 +498,7 @@ h='<div class="card"><div class="split"><div class="vis"><p class="q">'+cur.t+' 
 (done?'<button class="btn main" id="nx">Next fact</button>':'')+'</div></div></div>'}
 $('#app').innerHTML=h}
 document.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
+if(mode=='w'&&wClick(b))return;
 if(b.dataset.t){tbl=b.dataset.t=='m'?'m':+b.dataset.t;cur=null;draw()}
 else if(b.dataset.a)answer(+b.dataset.a);
 else if(b.dataset.f){var fp=b.dataset.f.split('x');setFact(+fp[0],+fp[1]);view='p';draw();scrollTo(0,0)}
@@ -343,6 +524,7 @@ else if(b.id=='fh')say(fSayQ().replace(/×/g,'times').replace(/÷/g,'divided by'
 else if(b.id=='th'){var r=document.documentElement,dk=r.dataset.theme?r.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dk?'light':'dark'}});
 var lay='ipad';try{lay=localStorage.getItem('tt-lay')||'ipad'}catch(e){}
 function setLay(v){lay=v;document.body.dataset.lay=v;$('#lay').value=v;try{localStorage.setItem('tt-lay',v)}catch(e){}}
+document.addEventListener('change',function(e){if(e.target.id=='wname'&&wP){var v=e.target.value.trim();if(v){wP.name=v;wSave()}draw()}});
 $('#lay').addEventListener('change',function(){setLay(this.value)});setLay(lay);
 draw();
 </script>
