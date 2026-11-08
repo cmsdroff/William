@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Maths Practice</title>
+<title>Maths and Shapes Practice</title>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#E6EFF4;--card:#F6F9FB;--ink:#1B2A3A;--mute:#4A5F72;--line:#C4D3DE;--a:#167070;--dotB:#F2B632;--ok:#1E7A3C;--no:#9A4B00;
@@ -40,7 +40,7 @@ h1{font-size:22px;margin:4px 0 12px;font-weight:600}
 .chart button{display:flex;justify-content:space-between;width:100%;font:inherit;font-size:20px;padding:6px 10px;margin:2px 0;border:0;border-radius:8px;background:transparent;color:var(--ink);cursor:pointer;text-align:left}
 .chart button:nth-child(even){background:var(--bg)}
 .chart b{color:var(--a)}
-.seg button{font-size:17px;padding:10px 6px!important}
+.seg button{font-size:18px;flex:1 0 40%}
 .seg button.on{background:#2F5D8A;color:#fff;border-color:transparent}
 .lg{display:grid;justify-content:center;margin:8px auto 12px}
 .c{height:46px;font-size:30px;font-weight:600;text-align:center;line-height:46px}
@@ -48,122 +48,36 @@ h1{font-size:22px;margin:4px 0 12px;font-weight:600}
 .c.hl{background:rgba(242,182,50,.45);border-radius:6px}.c.q{color:var(--a)}.c.sg{color:var(--mute)}.c.dv{text-align:right;padding-right:8px}
 .chip{display:inline-block;color:#fff;font-weight:600;padding:2px 12px;border-radius:999px;font-size:16px}
 .chip2{display:inline-block;min-width:40px;text-align:center;padding:2px 6px;border:2px solid var(--line);border-radius:8px;margin:2px;font-weight:600}
-.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 4px}
-.fact{font:inherit;font-weight:600;font-size:20px;padding:8px 4px;border-radius:12px;border:3px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;text-align:center}
-.fact.m{color:#fff}
-.pips{display:flex;justify-content:center;gap:6px;margin-top:4px}
-.pip{width:12px;height:12px;border-radius:50%;border:2px solid currentColor}
-.pip.on{background:currentColor}
-.ftitle{font-weight:600;margin:14px 0 2px}
-.tabs button.fs{font-size:17px;flex:1 0 40%;padding:10px 4px}
-.fr{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;line-height:1.1;margin:0 .08em}
-.fr>span:first-child{border-bottom:.07em solid currentColor;padding:0 .12em}
-.q.fq{font-size:40px}
-.fbar{display:block;width:100%;max-width:320px;margin:6px auto}
-.fpie{display:block;width:170px;margin:6px auto}
-.fplus{text-align:center;font-size:28px;font-weight:600;margin:0;line-height:1}
-.fgroups{display:flex;flex-direction:column;align-items:center;gap:6px;margin:8px auto 12px}
-.frow{display:flex;gap:5px;padding:4px 8px;border:2px dashed var(--line);border-radius:999px}
-.frow.dim{opacity:.35}
-.opts button .fr{font-size:28px}
-.top{display:flex;flex-wrap:wrap;align-items:center;gap:0 10px}
-.top h1{flex:1;margin:4px 0 10px}
-.top #mode{flex:1 0 100%;order:3}
-#lay{font:inherit;font-size:16px;font-weight:600;padding:6px 8px;border-radius:12px;border:3px solid var(--line);background:var(--card);color:var(--ink);margin-bottom:6px}
-.vis,.ctl{min-width:0}
-.ctl .opts{margin-top:10px}
-#tabs button{flex:1 1 0;min-width:0}
-#tabs button.fs{flex:1 0 30%}
-body[data-lay=phone] main{max-width:480px}
-body[data-lay=phone] .tabs button{font-size:19px;padding:8px 0}
-body[data-lay=phone] .dot{width:16px;height:16px}
-body[data-lay=phone] .grid{gap:4px}
-body[data-lay=phone] .q{font-size:46px}
-body[data-lay=ipad] main{max-width:1000px}
-body[data-lay=pc] main{max-width:1150px}
-@media (min-width:700px){
-body:not([data-lay=phone]) .top{flex-wrap:nowrap;gap:16px;margin-bottom:12px}
-body:not([data-lay=phone]) .top h1{flex:0 0 auto;margin:0}
-body:not([data-lay=phone]) .top #mode{flex:1;order:0;margin:0}
-body:not([data-lay=phone]) #lay{margin:0}
-body:not([data-lay=phone]) #tabs button.fs{flex:1 1 0}
-body:not([data-lay=phone]) .split{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:28px;align-items:start}
-body:not([data-lay=phone]) .ctl{padding-top:6px}
-}
-body[data-lay=phone] .split{display:flex;flex-direction:column}
-body[data-lay=phone] .vis{display:contents}
-body[data-lay=phone] .vis>*{order:2}
-body[data-lay=phone] .vis>.q,body[data-lay=phone] .vis>.lg,body[data-lay=phone] .vis>.fbar,body[data-lay=phone] .vis>.fpie,body[data-lay=phone] .vis>.fplus,body[data-lay=phone] .vis>.msg,body[data-lay=phone] .vis>.wcard{order:0}
-body[data-lay=phone] .ctl{order:1;margin-bottom:12px}
-body[data-lay=phone] .ldset .btn{font-size:15px;padding:8px 10px}
-body[data-lay=phone] .seg button{font-size:15px}
-@media (max-width:699px){
-.split{display:flex;flex-direction:column}
-.vis{display:contents}
-.vis>*{order:2}
-.vis>.q,.vis>.lg,.vis>.fbar,.vis>.fpie,.vis>.fplus,.vis>.msg,.vis>.wcard{order:0}
-.ctl{order:1;margin-bottom:12px}
-.ldset .btn{font-size:15px;padding:8px 10px}
-.seg button{font-size:15px}
-}
-.wcard{border:4px solid;border-radius:20px;padding:0 0 16px;text-align:center;overflow:hidden;background:var(--card)}
-.wstage{color:#fff;font-weight:600;font-size:16px;padding:6px 10px}
-.wq{font-size:20px;margin:12px 14px 0;color:var(--mute)}
-.wemo{font-size:72px;line-height:1.2;margin:6px 0}
-.wtext{font-size:28px;font-weight:600;margin:0 16px;line-height:1.4}
-.wdots{display:flex;justify-content:center;gap:8px;margin:14px 0 0}
-.wdots span{width:14px;height:14px;border-radius:50%;border:2px solid var(--line)}
-.wdots span.on{background:var(--a);border-color:var(--a)}
-.wlist{margin:6px 0 0;padding-left:0;list-style:none}.wlist li{margin:6px 0}
-.winput{font:inherit;font-size:20px;padding:8px 12px;border-radius:12px;border:3px solid var(--line);background:var(--card);color:var(--ink);min-width:0}
-.btn.sel{background:var(--a);border-color:var(--a);color:#fff}
-.btn.small{font-size:15px;padding:6px 12px;margin-top:6px}
-.wplan{max-width:760px;margin-left:auto;margin-right:auto}
-.wtitle{font-size:24px;margin:0 0 4px;font-weight:600}
-.wmtn{display:block;width:100%;max-width:360px;margin:0 auto 6px}
-.wstep{border-left:8px solid;padding:10px 14px;margin:12px 0;border-radius:8px;background:var(--bg)}
-.wstep h3{margin:0 0 4px;font-size:19px}
-.wsense{margin-top:6px;font-size:17px}
-.wmodel{margin:8px 0 0}
-.tick{display:flex;gap:12px;align-items:center;width:100%;text-align:left;font:inherit;font-size:18px;background:none;border:0;color:var(--ink);padding:6px 0;cursor:pointer}
-.tick .bx{flex:0 0 30px;height:30px;border:3px solid var(--line);border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:600}
-.tick.on .bx{background:var(--ok);border-color:var(--ok);color:#fff}
-.opts.four{grid-template-columns:repeat(2,1fr)}
-.opts button.wbtn{font-size:21px;padding:10px 4px;line-height:1.3}
-.wsm{font-size:34px}
-.wsaved{margin:8px 0;flex-wrap:nowrap;align-items:stretch}
-body[data-lay=phone] .wemo{font-size:52px}body[data-lay=phone] .wtext{font-size:23px}body[data-lay=phone] #tabs button.fs{font-size:16px;padding:6px 2px}
-@media (max-width:699px){.wemo{font-size:52px}.wtext{font-size:23px}#tabs button.fs{font-size:16px;padding:6px 2px}}
-@media print{body{background:#fff;color:#000}main>*:not(#app),.noprint{display:none!important}#app>*:not(.wplan){display:none!important}.wplan{border:0;max-width:none}.wstep{break-inside:avoid}}
+.bx{display:inline-block;min-width:1.2em;padding:0 8px;border-radius:8px;background:var(--dotB);color:#1B2A3A;text-align:center}
+.bx.x{background:transparent;color:var(--a);padding:0 4px}
+.bar{display:flex;gap:4px;margin:6px 0 14px}
+.bp{border-radius:8px;padding:8px 0;text-align:center;font-weight:600;color:#fff;background:var(--a);min-width:44px}
+.bp.u{background:var(--dotB);color:#1B2A3A}
+.bt{text-align:center;font-weight:600;color:var(--mute);margin-top:4px}
+.eq{font-size:38px;font-weight:600;text-align:center;line-height:1.3;margin:4px 0 8px}
+.opts.w{grid-template-columns:1fr}.opts.w button{font-size:24px;padding:12px}
+.sname{font-size:34px;font-weight:600;text-align:center;margin:8px 0 0}
 :focus-visible{outline:4px solid #E0A100;outline-offset:2px}
 </style>
 </head>
 <body>
 <main>
-<div class="top">
-<h1>Maths practice</h1>
+<h1>Maths and shapes</h1>
 <div class="tabs seg" id="mode"></div>
-<label for="lay" style="position:absolute;left:-9999px">Screen size</label>
-<select id="lay"><option value="ipad">iPad</option><option value="phone">Phone</option><option value="pc">Computer</option></select>
-</div>
 <div class="tabs" id="tabs"></div>
 <div id="app"></div>
 <div class="row" style="margin-top:6px">
 <button class="btn" id="vw"></button>
-<button class="btn" id="mf"></button>
 <button class="btn" id="th">Dark / light</button>
 </div>
 <p class="stars" id="st"></p>
 </main>
 <script>
 var $=function(s){return document.querySelector(s)};var TS=[3,4,6,7,8,12];
-var tbl='m',view='p',cur=null,done=false,stars=0,miss={},tried=[],days={},msg='',msgC='',showTrick=false,opts=[];
-try{stars=+localStorage.getItem('tt-stars')||0;miss=JSON.parse(localStorage.getItem('tt-miss')||'{}');days=JSON.parse(localStorage.getItem('tt-days')||'{}')}catch(e){}
-function save(){try{localStorage.setItem('tt-stars',stars);localStorage.setItem('tt-miss',JSON.stringify(miss));localStorage.setItem('tt-days',JSON.stringify(days))}catch(e){}}
-function today(){var d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate()}
-function lvl(k){return Math.min((days[k]||[]).length,3)}
-function nMastered(ts){var c=0;ts.forEach(function(t){for(var n=2;n<=12;n++)if(lvl(t+'x'+n)>=3)c++});return c}
-function say(s){try{speechSynthesis.cancel();s=s.replace(/[\u{1F000}-\u{1FAFF}\u2600-\u27BF\uFE0F]/gu,'');var u=new SpeechSynthesisUtterance(s);u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
+var tbl=6,view='p',cur=null,done=false,stars=0,miss={},tried=[],msg='',msgC='',showTrick=false,opts=[];
+try{stars=+localStorage.getItem('tt-stars')||0;miss=JSON.parse(localStorage.getItem('tt-miss')||'{}')}catch(e){}
+function save(){try{localStorage.setItem('tt-stars',stars);localStorage.setItem('tt-miss',JSON.stringify(miss))}catch(e){}}
+function say(s){try{speechSynthesis.cancel();var u=new SpeechSynthesisUtterance(s);u.rate=.85;speechSynthesis.speak(u)}catch(e){}}
 function sp(n){return n<=2?[n,0]:n==3?[2,1]:n==4?[2,2]:n==5?[5,0]:n<=9?[5,n-5]:n==10?[10,0]:[10,n-10]}
 function trick(t,n){var s=sp(n),a=s[0],b=s[1],p=t*n;
 if(n==1)return 'Anything times 1 stays the same: '+t;
@@ -173,21 +87,18 @@ if(n==5)return 'Half of 10 × '+t+' ('+10*t+') is '+p;
 return a+' × '+t+' = '+a*t+', then '+b+' × '+t+' = '+b*t+'. So '+a*t+' + '+b*t+' = '+p}
 function accent(t){return {3:'#A63D5E',4:'#3B6FB0',6:'#167070',7:'#6847B8',8:'#B85A12',12:'#5A7A1F'}[t]||'#2F5D8A'}
 function pick(){var ts=tbl=='m'?TS:[tbl],pool=[];
-ts.forEach(function(t){for(var n=2;n<=12;n++){var k=t+'x'+n,w=(lvl(k)>=3?1:3)+3*(miss[k]||0);if(cur&&cur.t==t&&cur.n==n)w=0;for(var i=0;i<w;i++)pool.push({t:t,n:n})}});
-var f=pool[Math.floor(Math.random()*pool.length)];setFact(f.t,f.n)}
-function setFact(t,n){cur={t:t,n:n};done=false;tried=[];msg='';showTrick=false;
+ts.forEach(function(t){for(var n=2;n<=12;n++){var k=t+'x'+n,w=1+3*(miss[k]||0);if(cur&&cur.t==t&&cur.n==n)w=0;for(var i=0;i<w;i++)pool.push({t:t,n:n})}});
+cur=pool[Math.floor(Math.random()*pool.length)];done=false;tried=[];msg='';showTrick=false;
 var p=cur.t*cur.n,c=[p,p+cur.t,p-cur.t,p+1,p-1,p+10,p-10].filter(function(x,i,a){return x>0&&a.indexOf(x)==i});
 var d=c.slice(1).sort(function(){return Math.random()-.5}).slice(0,2);
 opts=[p].concat(d).sort(function(){return Math.random()-.5})}
 function answer(v){if(done||tried.indexOf(v)>-1)return;var k=cur.t+'x'+cur.n;
-if(v==cur.t*cur.n){done=true;stars++;msg='Yes! '+cur.t+' × '+cur.n+' = '+v;msgC='good';showTrick=true;
-if(tried.length==0){if(miss[k])miss[k]--;var dl=days[k]||(days[k]=[]),was=lvl(k);if(dl.indexOf(today())<0)dl.push(today());
-if(was<3&&lvl(k)>=3)msg+='. You have mastered this fact! ★'}}
-else{if(tried.length==0&&days[k]&&days[k].length)days[k].pop();tried.push(v);miss[k]=(miss[k]||0)+1;msg='Not yet. Look at the dots and try again.';msgC='no';showTrick=true}
+if(v==cur.t*cur.n){done=true;stars++;if(tried.length==0&&miss[k])miss[k]--;msg='Yes! '+cur.t+' × '+cur.n+' = '+v;msgC='good';showTrick=true}
+else{tried.push(v);miss[k]=(miss[k]||0)+1;msg='Not yet. Look at the dots and try again.';msgC='no';showTrick=true}
 save();draw()}
 function dots(t,n){var s=sp(n)[0],h='<div class="grid" style="grid-template-columns:repeat('+t+',19px)">';
 for(var r=0;r<n;r++)for(var c=0;c<t;c++)h+='<div class="dot '+(r<s?'A':'B')+'"></div>';return h+'</div>'}
-var mode='t',dv='m',ldDig=2,ldRem=false,watch=false,ld=null,k=0,ans=false,ldMsg='',ldOpts=[],ldTried=[];
+var mode='t',dv=6,ldDig=2,ldRem=false,watch=false,ld=null,k=0,ans=false,ldMsg='',ldOpts=[],ldTried=[];
 var STEPC={div:'#6847B8',mul:'#B85A12',sub:'#167070',down:'#3B6FB0'},STEPN={div:'Divide',mul:'Multiply',sub:'Subtract',down:'Bring down'};
 function sh(a){return a.sort(function(){return Math.random()-.5})}
 function ldNew(){var ds=dv=='m'?[3,4,6,7,8]:[dv],d=ds[Math.floor(Math.random()*ds.length)],lo=ldDig==2?10:100,hi=ldDig==2?99:999,qa=Math.ceil(lo/d),qb=Math.floor(hi/d),qq=qa+Math.floor(Math.random()*(qb-qa+1)),N=d*qq;
@@ -217,293 +128,111 @@ function drawLD(){if(!ld)ldNew();var d=ld.d,s=ld.st[k],fin=k>=ld.st.length,h='',
 document.documentElement.style.setProperty('--a',accent(d));
 [3,4,6,7,8,'m'].forEach(function(t){tb+='<button class="t'+t+(t==dv?' on':'')+'" data-d="'+t+'">'+(t=='m'?'Mix':t)+'</button>'});
 $('#tabs').innerHTML=tb;
-h+='<div class="row ldset" style="margin-bottom:12px"><button class="btn" data-c="dig">'+ldDig+' digits</button><button class="btn" data-c="rem">'+(ldRem?'With remainders':'No remainders')+'</button><button class="btn" data-c="watch">'+(watch?'Watch me':'Your turn')+'</button></div>';
-h+='<div class="card"><div class="split"><div class="vis"><p class="q" style="font-size:40px">'+ld.N+' ÷ '+d+'</p>'+ldGrid()+'<div class="legend" style="text-align:left;margin-top:10px">Your '+d+' times table</div><div>';
-for(var n=1;n<=10;n++)h+='<span class="chip2">'+d*n+'</span>';
-h+='</div></div><div class="ctl">';
+h+='<div class="row" style="margin-bottom:12px"><button class="btn" data-c="dig">'+ldDig+' digits</button><button class="btn" data-c="rem">'+(ldRem?'With remainders':'No remainders')+'</button><button class="btn" data-c="watch">'+(watch?'Watch me':'Your turn')+'</button></div>';
+h+='<div class="card"><p class="q" style="font-size:40px">'+ld.N+' ÷ '+d+'</p>'+ldGrid();
 if(fin){var qs=ld.st.filter(function(x){return x.t=='div'}).map(function(x){return x.q}).join(''),rm=ld.st[ld.st.length-1].rem;
 h+='<p class="msg good">Done! '+ld.N+' ÷ '+d+' = '+qs+(rm?' remainder '+rm:'')+'</p><button class="btn main" id="lnew">New problem</button>'}
 else{h+='<span class="chip" style="background:'+STEPC[s.t]+'">'+STEPN[s.t]+'</span><p class="msg" style="margin-top:8px">'+ldQ(s)+'</p>';
 if(ans)h+='<div class="trick">'+ldWhy(s)+'</div><button class="btn main" id="ln">Next step</button>';
 else{if(ldMsg)h+='<p class="msg no">'+ldMsg+'</p>';
 h+=s.t=='down'?'<button class="btn main" data-l="d">Bring down the '+s.dg+'</button>':'<div class="opts" style="margin-top:10px">'+ldOpts.map(function(o){return '<button data-l="'+o+'" class="'+(ldTried.indexOf(o)>-1?'bad':'')+'">'+o+'</button>'}).join('')+'</div>'}}
-h+='<div class="row" style="margin-top:12px"><button class="btn" id="lh">Hear it</button></div></div></div></div>';
-h+='<div class="card"><div class="legend" style="text-align:left">The steps. Say it: Dad, Mum, Sister, Brother, Rover</div>';
+h+='<div class="row" style="margin-top:12px"><button class="btn" id="lh">Hear it</button></div></div>';
+h+='<div class="card"><div class="legend" style="text-align:left">Your '+d+' times table</div><div>';
+for(var n=1;n<=10;n++)h+='<span class="chip2">'+d*n+'</span>';
+h+='</div></div><div class="card"><div class="legend" style="text-align:left">The steps. Say it: Dad, Mum, Sister, Brother, Rover</div>';
 [['div','Dad'],['mul','Mum'],['sub','Sister'],['down','Brother']].forEach(function(x){h+='<div style="margin:6px 0"><span class="chip" style="background:'+STEPC[x[0]]+'">'+x[1]+'</span> '+STEPN[x[0]]+'</div>'});
 h+='<div style="margin:6px 0"><span class="chip" style="background:#4A5F72">Rover</span> Repeat until no digits are left</div></div>';
 $('#app').innerHTML=h}
-var fSub='p',fPick='m',fq=null,fDone=false,fTried=[],fMsg='',fMsgC='',fTrick=false,fOpts=[];
-var FSUB=[['p','What is it?','#3B6FB0'],['o','Of a number','#6847B8'],['a','Add','#167070'],['s','Take away','#B85A12'],['m','Mix','#2F5D8A']];
-var FNM={2:['half','halves'],3:['third','thirds'],4:['quarter','quarters'],5:['fifth','fifths'],6:['sixth','sixths'],7:['seventh','sevenths'],8:['eighth','eighths'],10:['tenth','tenths'],12:['twelfth','twelfths']};
-function rnd(a,b){return a+Math.floor(Math.random()*(b-a+1))}
-function one(a){return a[Math.floor(Math.random()*a.length)]}
-function fw(n,d){return (n==1?'one ':n+' ')+FNM[d][n==1?0:1]}
-function frac(n,d){return '<span class="fr"><span>'+n+'</span><span>'+d+'</span></span>'}
-function fillOf(c){return c=='A'?'var(--a)':c=='B'?'var(--dotB)':'var(--card)'}
-function bar(d,f){var w=300,h=56,pw=w/d,s='<svg class="fbar" viewBox="-3 -3 '+(w+6)+' '+(h+6)+'" aria-hidden="true">';
-for(var i=0;i<d;i++){var c=f(i),x=i*pw;s+='<rect x="'+x+'" y="0" width="'+pw+'" height="'+h+'" style="fill:'+fillOf(c=='X'?'A':c)+';stroke:var(--ink);stroke-width:2.5'+(c=='X'?';fill-opacity:.25':'')+'"/>';
-if(c=='X')s+='<path d="M'+(x+8)+' 8L'+(x+pw-8)+' '+(h-8)+'M'+(x+pw-8)+' 8L'+(x+8)+' '+(h-8)+'" style="stroke:var(--ink);stroke-width:3;stroke-linecap:round"/>'}
-return s+'</svg>'}
-function pie(d,n){var r=72,c=76,s='<svg class="fpie" viewBox="0 0 152 152" aria-hidden="true">';
-for(var i=0;i<d;i++){var a0=(i/d-.25)*2*Math.PI,a1=((i+1)/d-.25)*2*Math.PI;
-s+='<path d="M'+c+' '+c+'L'+(c+r*Math.cos(a0)).toFixed(2)+' '+(c+r*Math.sin(a0)).toFixed(2)+'A'+r+' '+r+' 0 '+(1/d>.5?1:0)+' 1 '+(c+r*Math.cos(a1)).toFixed(2)+' '+(c+r*Math.sin(a1)).toFixed(2)+'Z" style="fill:'+fillOf(i<n?'A':'')+';stroke:var(--ink);stroke-width:2.5;stroke-linejoin:round"/>'}
-return s+'</svg>'}
-function fracOpts(ok,miss,others){var o=others.filter(function(x,i,a){var p=x.split('/');return +p[0]>0&&+p[1]>0&&x!=ok&&x!=miss&&a.indexOf(x)==i}),pk=[ok];
-var mp=miss&&miss!=ok&&+miss.split('/')[0]>0&&+miss.split('/')[1]>0;if(mp)pk.push(miss);
-return sh(pk.concat(sh(o).slice(0,3-pk.length)))}
-function numOpts(c,step){return sh([c].concat(sh([c+1,c-1,c+step,c-step,c+2].filter(function(v,i,a){return v>0&&v!=c&&a.indexOf(v)==i})).slice(0,2)))}
-var FDEN={p:[2,3,4,5,6,8,10,12],o:[2,3,4,5,6,7,8,10,12],a:[3,4,5,6,8,10,12],s:[3,4,5,6,8,10,12]},fLast=0;
-function fKey(sub,d){return 'f'+sub+d}
-function wd(){var pool=[];FDEN[fSub].forEach(function(d){var k=fKey(fSub,d),w=(lvl(k)>=3?1:3)+3*(miss[k]||0);if(d==fLast)w=0;for(var i=0;i<w;i++)pool.push(d)});return one(pool)}
-function fNew(fd,kind){fSub=kind||(fPick=='m'?one(['p','o','a','s'].filter(function(x){return x!=fSub})):fPick);fDone=false;fTried=[];fMsg='';fTrick=false;var d,n,a,b;
-if(fSub=='p'){d=fd||wd();n=rnd(1,d-1);fq={d:d,n:n,pie:Math.random()<.5&&d<=8};fOpts=fracOpts(n+'/'+d,(d-n)+'/'+d,[n+'/'+(d-n),d+'/'+n,(n+1)+'/'+d,(n-1)+'/'+d,n+'/'+(d+1)])}
-else if(fSub=='o'){d=fd||wd();var k=rnd(2,d>=7?5:10);a=rnd(1,d-1);if(Math.random()<.35)a=1;fq={d:d,k:k,a:a,N:d*k,step:0};fOpts=numOpts(k,d)}
-else if(fSub=='a'){d=fd||wd();a=rnd(1,d-2);b=rnd(1,d-a);var c=a+b;fq={d:d,a:a,b:b,c:c};fOpts=fracOpts(c+'/'+d,c+'/'+(2*d),[(c+1)+'/'+d,(c-1)+'/'+d,a+'/'+d])}
-else{d=fd||wd();a=rnd(2,d);b=rnd(1,a-1);var c=a-b;fq={d:d,a:a,b:b,c:c};fOpts=fracOpts(c+'/'+d,(a+b)+'/'+d,[(c+1)+'/'+d,(c-1)+'/'+d,c+'/'+(d-b)])}}
-function fTag(){fq.key=fKey(fSub,fq.d);fq.err=false;fLast=fq.d}
-function fRight(){var q=fq;return fSub=='p'?q.n+'/'+q.d:fSub=='o'?(q.step==0?q.k:q.a*q.k):q.c+'/'+q.d}
-function fTrickTxt(){var q=fq;
-if(fSub=='p')return 'Count all the parts: '+q.d+'. That is the bottom number. Count the coloured parts: '+q.n+'. That is the top number.';
-if(fSub=='o')return q.step==0?'Share '+q.N+' into '+q.d+' equal groups. '+q.N+' ÷ '+q.d+' = '+q.k+'. (Think: '+q.d+' × '+q.k+' = '+q.N+')':q.a+' groups of '+q.k+': '+q.a+' × '+q.k+' = '+q.a*q.k+'.';
-if(fSub=='a')return 'The pieces are the same size, so the bottom number stays '+q.d+'. Just add the tops: '+q.a+' + '+q.b+' = '+q.c+'.'+(q.c==q.d?' '+q.d+' '+FNM[q.d][1]+' make one whole!':'');
-return 'The pieces are the same size, so the bottom number stays '+q.d+'. Just take away the tops: '+q.a+' − '+q.b+' = '+q.c+'.'}
-function fSayQ(){var q=fq;if(fSub=='p')return 'What fraction is coloured?';
-if(fSub=='o')return q.step==0?'Share '+q.N+' into '+q.d+' equal groups. How many in each group?':(fDone?fw(q.a,q.d)+' of '+q.N+' is '+q.a*q.k:'Now take '+q.a+' groups. '+q.a+' times '+q.k+' is?');
-return fw(q.a,q.d)+(fSub=='a'?' add ':' take away ')+fw(q.b,q.d)}
-function fAns(v){if(fDone||fTried.indexOf(v)>-1)return;var q=fq;
-if(v==String(fRight())){
-if(fSub=='o'&&q.step==0&&q.a>1){q.step=1;fTried=[];fMsg='Yes! '+q.k+' in each group.';fMsgC='good';fTrick=false;fOpts=numOpts(q.a*q.k,q.k)}
-else{if(fSub=='o'&&q.step==0)q.step=1;fDone=true;stars++;fTrick=true;fMsgC='good';var newM=false;
-if(!q.err){if(miss[q.key])miss[q.key]--;var dl=days[q.key]||(days[q.key]=[]),was=lvl(q.key);if(dl.indexOf(today())<0)dl.push(today());newM=was<3&&lvl(q.key)>=3}
-fMsg=fSub=='p'?'Yes! '+q.n+'/'+q.d+' ('+fw(q.n,q.d)+') is coloured.':fSub=='o'?'Yes! '+q.a+'/'+q.d+' of '+q.N+' = '+q.a*q.k:'Yes! '+q.a+'/'+q.d+(fSub=='a'?' + ':' − ')+q.b+'/'+q.d+' = '+q.c+'/'+q.d;
-if(newM)fMsg+='. You have mastered '+FNM[q.d][1]+' here! ★';save()}}
-else{if(!q.err){q.err=true;miss[q.key]=(miss[q.key]||0)+1;if(days[q.key]&&days[q.key].length)days[q.key].pop();save()}fTried.push(v);fMsg='Not yet. Look at the picture and try again.';fMsgC='no';fTrick=true}draw()}
-function fDots(){var q=fq,h='<div class="fgroups">';for(var g=0;g<q.d;g++){h+='<div class="frow'+(q.step>0&&g>=q.a?' dim':'')+'">';for(var i=0;i<q.k;i++)h+='<div class="dot '+(q.step>0&&g<q.a?'A':'B')+'"></div>';h+='</div>'}return h+'</div>'}
-function fcol(sb){return FSUB.filter(function(x){return x[0]==sb})[0]}
-function drawFR(){if(view!='f'&&!fq){fNew();fTag()}var tb='',col=fcol(view=='f'&&fPick!='m'?fPick:fSub)[2],q,h,stepLine='';
-FSUB.forEach(function(x){tb+='<button class="fs'+(x[0]==fPick?' on':'')+'" data-fs="'+x[0]+'"'+(x[0]==fPick?' style="background:'+x[2]+'"':'')+'>'+x[1]+'</button>'});
-$('#tabs').innerHTML=tb;document.documentElement.style.setProperty('--a',col);
-var fm=0;['p','o','a','s'].forEach(function(sb){FDEN[sb].forEach(function(d){if(lvl(fKey(sb,d))>=3)fm++})});
-$('#st').textContent='★ '+stars+' stars earned'+(fm?' · '+fm+' fraction families mastered':'');
-$('#mf').textContent=view=='f'?'Back to practice':'My fractions';
-if(view=='f'){var out='<div class="card"><p class="legend" style="text-align:left">Each tile is one fraction family, like quarters. Get it right first time on 3 different days and it is mastered.</p>';
-(fPick=='m'?['p','o','a','s']:[fPick]).forEach(function(sb){var m=0,g=0,tl='',nm=fcol(sb)[1],col=fcol(sb)[2];
-FDEN[sb].forEach(function(d){var k=fKey(sb,d),L=lvl(k),pp='';if(L>=3)m++;else if(L>0)g++;
-for(var i=0;i<3;i++)pp+='<span class="pip'+(i<L?' on':'')+'"></span>';
-tl+='<button class="fact'+(L>=3?' m':'')+'" data-ff="'+sb+d+'" aria-label="'+FNM[d][1]+'" style="'+(L>=3?'background:'+col+';border-color:'+col:L>0?'border-color:'+col:'')+'">'+frac(1,d)+'<span class="pips" style="color:'+(L>=3?'#fff':col)+'">'+pp+'</span></button>'});
-out+='<div class="ftitle" style="color:'+col+'">'+nm+'</div><div class="legend" style="text-align:left;margin:0">'+(m?m+' mastered':'Just starting')+(g?', '+g+' getting there':'')+'</div><div class="facts">'+tl+'</div>'});
-$('#app').innerHTML=out+'</div><p class="legend">Tap a tile to practise it.</p>';return}
-q=fq;h='<div class="card"><div class="split"><div class="vis">';
-if(fSub=='p'){h+='<p class="msg" style="margin:0 0 4px;text-align:center">What fraction is coloured?</p>'+(q.pie?pie(q.d,q.n):bar(q.d,function(i){return i<q.n?'A':''}));
-if(fDone)h+='<p class="q fq">'+frac(q.n,q.d)+'</p>';h+='<p class="legend">'+q.d+' equal parts. '+q.n+' coloured.</p>'}
-else if(fSub=='o'){h+='<p class="q fq">'+frac(q.a,q.d)+' of '+q.N+' = <span>'+(fDone?q.a*q.k:'?')+'</span></p>'+fDots();
-h+='<p class="legend">'+q.N+' dots shared into '+q.d+' equal groups (one group on each line).</p>';
-stepLine='<p class="msg" style="margin-top:0"><span class="chip" style="background:'+(q.step==0?'#6847B8':'#B85A12')+'">Step '+(q.step+1)+'</span> '+(q.step==0?'Divide by the bottom: '+q.N+' ÷ '+q.d+' = ?':'Times by the top: '+q.a+' × '+q.k+' = ?')+'</p>'}
-else if(fSub=='a'){h+='<p class="q fq">'+frac(q.a,q.d)+' + '+frac(q.b,q.d)+' = <span>'+(fDone?frac(q.c,q.d):'?')+'</span></p>'+bar(q.d,function(i){return i<q.a?'A':''})+'<p class="fplus">+</p>'+bar(q.d,function(i){return i<q.b?'B':''});
-if(fDone)h+='<p class="fplus">=</p>'+bar(q.d,function(i){return i<q.a?'A':i<q.c?'B':''});h+='<p class="legend">Each bar has '+q.d+' equal parts.</p>'}
-else{h+='<p class="q fq">'+frac(q.a,q.d)+' − '+frac(q.b,q.d)+' = <span>'+(fDone?frac(q.c,q.d):'?')+'</span></p>'+bar(q.d,function(i){return i<q.c?'A':i<q.a?'X':''});
-h+='<p class="legend">Start with '+q.a+' coloured parts. Cross out '+q.b+'. How many are left?</p>'}
-h+='</div><div class="ctl">'+stepLine;
-if(!fDone)h+='<div class="opts">'+fOpts.map(function(o){var s=String(o),p=s.split('/');return '<button data-fa="'+s+'" class="'+(fTried.indexOf(s)>-1?'bad':'')+'">'+(p.length>1?frac(p[0],p[1]):s)+'</button>'}).join('')+'</div>';
-if(fMsg)h+='<p class="msg '+fMsgC+'">'+fMsg+'</p>';
-if(fTrick)h+='<div class="trick">'+fTrickTxt()+'</div>';
-h+='<div class="row" style="margin-top:12px"><button class="btn" id="fh">Hear it</button>'+(fTrick?'':'<button class="btn" id="ftk">Show the trick</button>')+'</div>';
-if(fDone)h+='<button class="btn main" id="fnx">Next one</button>';
-h+='</div></div></div>';
-var tips={p:'The bottom number tells you how many equal parts. The top number tells you how many you have.',o:'To find a fraction of a number: divide by the bottom, then times by the top.',a:'Adding fractions with the same bottom number: add the tops, keep the bottom.',s:'Taking away fractions with the same bottom number: take away the tops, keep the bottom.'};
-h+='<div class="card"><div class="legend" style="text-align:left;margin:0">Remember</div><div>'+tips[fSub]+'</div></div>';
+var alvl=1,aX=false,al=null,aTried=[],aDone=false,aTrick=false,aMsg='';
+function ri(a,b){return a+Math.floor(Math.random()*(b-a+1))}
+function ph(t){return t.replace(/@/g,aX?'<b class="bx x">x</b>':'<b class="bx">?</b>')}
+function alNew(){var e,ans,tr,bar=null,T=[2,3,4,5,6,7,8,12],f=ri(0,3);
+if(alvl==1){var a=ri(2,12),n=ri(2,12),c=a+n;
+if(f==0){e=a+' + @ = '+c;ans=n;tr='Take '+a+' away from '+c+': '+c+' − '+a+' = '+n;bar={p:[[a,a],['@',n,1]],t:c}}
+else if(f==1){e='@ + '+a+' = '+c;ans=n;tr='Take '+a+' away from '+c+': '+c+' − '+a+' = '+n;bar={p:[['@',n,1],[a,a]],t:c}}
+else if(f==2){e=c+' − @ = '+a;ans=n;tr='The whole is '+c+'. Take away '+a+' to find the missing part: '+c+' − '+a+' = '+n;bar={p:[[a,a],['@',n,1]],t:c}}
+else{e='@ − '+a+' = '+n;ans=c;tr='Add the '+a+' back: '+n+' + '+a+' = '+c;bar={p:[[a,a],[n,n]],t:'@'}}}
+else if(alvl==2){var t=T[ri(0,7)],n2=ri(2,12),pp=t*n2;
+if(f==0){e=t+' × @ = '+pp;ans=n2;tr=t+' times what makes '+pp+'? Do the opposite: '+pp+' ÷ '+t+' = '+n2}
+else if(f==1){e='@ × '+t+' = '+pp;ans=n2;tr='Do the opposite: '+pp+' ÷ '+t+' = '+n2}
+else if(f==2){e='@ ÷ '+t+' = '+n2;ans=pp;tr='Do the opposite of ÷. Multiply: '+n2+' × '+t+' = '+pp}
+else{e=pp+' ÷ @ = '+t;ans=n2;tr=pp+' shared into groups of '+n2+' gives '+t+'. Check: '+pp+' ÷ '+t+' = '+n2}}
+else{var m=ri(2,5),n3=ri(2,9),mn=m*n3,a3=ri(1,Math.min(9,mn-1));
+if(f<2){var c3=mn+a3;e=m+' × @ + '+a3+' = '+c3;ans=n3;tr='Step 1: undo the + '+a3+': '+c3+' − '+a3+' = '+mn+'. Step 2: undo the × '+m+': '+mn+' ÷ '+m+' = '+n3}
+else{var c4=mn-a3;e=m+' × @ − '+a3+' = '+c4;ans=n3;tr='Step 1: undo the − '+a3+': '+c4+' + '+a3+' = '+mn+'. Step 2: undo the × '+m+': '+mn+' ÷ '+m+' = '+n3}}
+var x=[ans+1,ans-1,ans+2,ans-2,ans+5].filter(function(v,i,a){return v>=0&&a.indexOf(v)==i});
+al={e:e,ans:ans,tr:tr,bar:bar,o:sh([ans].concat(sh(x).slice(0,2)))};aTried=[];aDone=false;aTrick=false;aMsg=''}
+function alAns(v){if(aDone||aTried.indexOf(v)>-1)return;if(v==al.ans){aDone=true;aTrick=true;stars++;save()}else{aTried.push(v);aTrick=true;aMsg='Not yet. Read the trick and try again.'}draw()}
+function drawAL(){if(!al)alNew();document.documentElement.style.setProperty('--a','#2F5D8A');
+$('#tabs').innerHTML=[1,2,3].map(function(v){return '<button class="tm'+(v==alvl?' on':'')+'" data-v="'+v+'">Level '+v+'</button>'}).join('');
+var h='<div class="card"><p class="legend">'+['','Level 1: add and take away','Level 2: times and divide','Level 3: two steps'][alvl]+'. Find the secret number.</p><p class="eq">'+ph(al.e)+'</p>';
+if(al.bar){var b=al.bar;h+='<div class="bt">Whole: '+ph(''+b.t)+'</div><div class="bar">'+b.p.map(function(q){return '<div class="bp'+(q[2]?' u':'')+'" style="flex-grow:'+q[1]+'">'+ph(''+q[0])+'</div>'}).join('')+'</div>'}
+h+='<div class="opts">'+al.o.map(function(o){return '<button data-q="'+o+'" class="'+(aTried.indexOf(o)>-1?'bad':'')+(aDone&&o==al.ans?' good':'')+'">'+o+'</button>'}).join('')+'</div>';
+if(aDone)h+='<p class="msg good">Yes! The missing number is '+al.ans+'.</p>';else if(aMsg)h+='<p class="msg no">'+aMsg+'</p>';
+if(aTrick)h+='<div class="trick">'+al.tr+'</div>';
+h+='<div class="row" style="margin-top:12px"><button class="btn" id="ah">Hear it</button>'+(aTrick?'':'<button class="btn" id="at">Show the trick</button>')+'<button class="btn" data-ax="1">'+(aX?'Show box':'Show x')+'</button></div>'+(aDone?'<button class="btn main" id="an">Next one</button>':'')+'</div>';
+h+='<div class="card"><div class="legend" style="text-align:left">Big ideas</div><p style="margin:4px 0">1. The = sign is a balance. Both sides are equal.</p><p style="margin:4px 0">2. The box is a secret number. Find what fits.</p><p style="margin:4px 0">3. Opposites undo each other: + and −, × and ÷.</p></div>';
 $('#app').innerHTML=h}
-/* ===== Creative writing ===== */
-var NAMES=[['Maya','she'],['Leo','he'],['Zara','she'],['Sam','he'],['Ava','she'],['Kai','he'],['Isla','she'],['Finn','he'],['Ruby','she'],['Omar','he'],['Priya','she'],['Theo','he'],['Nia','she'],['Max','he']];
-var PR={he:{he:'he',him:'him',his:'his'},she:{he:'she',him:'her',his:'her'}};
-var DETS=['who is brave but a bit clumsy','who loves building things','who is scared of the dark','who never gives up','who is always asking questions','who has a big secret','who has just moved to a new town','who has a loyal dog called Biscuit','who dreams of being an explorer','who is shy but very kind','who keeps a lucky coin in {his} pocket','who notices things nobody else sees'];
-/* [where they are, "the" place, emoji, see, hear, smell/taste, feel] */
-var SETS=[
-['in a dark forest','the dark forest','🌲','Twisted trees reached out like bony fingers.','Twigs snapped and an owl hooted.','The air smelled of damp earth and pine.','Cold mist brushed against {n}\'s cheeks.'],
-['on a stormy beach','the stormy beach','🌊','Grey waves crashed onto the rocks.','Seagulls screamed above the howling wind.','The air tasted of salt and seaweed.','Sand stung {n}\'s bare legs.'],
-['in an old castle','the old castle','🏰','Cobwebs hung from the crumbling walls.','A heavy door creaked somewhere above.','It smelled of dust and old candles.','The stone was icy under {n}\'s fingers.'],
-['at a busy market','the busy market','🧺','Bright stalls were piled high with fruit.','Sellers shouted and music played.','Hot bread and spices filled the air.','People bumped against {n}\'s shoulders.'],
-['on a snowy mountain','the snowy mountain','🏔️','White peaks glittered in the sun.','Boots crunched in the deep snow.','The air was fresh and icy.','The wind bit at {n}\'s fingers.'],
-['on a spaceship','the spaceship','🚀','Tiny lights blinked on every wall.','The engines hummed and an alarm beeped.','It smelled of hot metal.','{n} floated, as light as a feather.'],
-['in an empty school at night','the empty school','🏫','Long shadows stretched down the corridor.','A clock ticked and a door banged.','It smelled of floor polish and old books.','The door handle was cold in {n}\'s hand.'],
-['in a steamy jungle','the jungle','🌴','Giant leaves hid bright parrots.','Monkeys chattered and rain dripped.','Sweet flowers and wet leaves filled the air.','The sticky heat clung to {n}\'s skin.'],
-['at a funfair','the funfair','🎡','Coloured lights flashed and spun.','People screamed on the rides.','Candyfloss and hot doughnuts smelled sweet.','The wind rushed past {n}\'s face.'],
-['on a coral reef under the sea','the coral reef','🐠','Silver fish shimmered past.','Bubbles popped in the silence.','The water tasted of salt.','The cold water pressed against {n}.']];
-var WHENS=[['early in the morning, as the sun came up','🌅'],['at midnight, under a full moon','🌕'],['on a stormy afternoon','⛈️'],['on the last day of the summer holidays','☀️'],['on a frosty winter evening','❄️'],['on the morning of a big school trip','🚌'],['on {n}\'s birthday','🎂'],['during a power cut','🕯️']];
-var FEELS=[
-['nervous','😬',['Butterflies fluttered in {n}\'s tummy.','{n}\'s hands were hot and sweaty.','{n} bit {his} lip and looked around.']],
-['scared','😨',['{n}\'s heart pounded like a drum.','{His} legs froze to the spot.','A shiver ran down {his} spine.']],
-['excited','🤩',['{n} bounced up and down on {his} toes.','{His} eyes sparkled.','{He} could not stop grinning.']],
-['angry','😠',['{n} clenched {his} fists.','{His} face went hot and red.','{He} stamped {his} foot.']],
-['sad','😢',['{n}\'s eyes filled with tears.','{His} shoulders slumped.','A lump grew in {his} throat.']],
-['happy','😊',['{n} smiled from ear to ear.','{He} skipped along, humming a song.','{His} heart felt as light as a balloon.']],
-['surprised','😲',['{n}\'s mouth dropped open.','{His} eyebrows shot up.','{He} gasped and took a step back.']],
-['curious','🤔',['{n} tilted {his} head.','{He} crept closer to get a better look.','{His} eyes narrowed as {he} studied it.']],
-['lonely','😔',['{n} sat on {his} own.','{He} stared down at the floor.','The silence felt heavy around {him}.']],
-['bored','🥱',['{n} sighed loudly.','{He} drummed {his} fingers on the table.','{His} eyelids drooped.']]];
-/* [plan (now), story sentence (past), emoji] */
-var PROBS=[['finds an old map with an X on it','found an old map with an X on it','📜'],['gets lost and cannot find the way back','got lost and could not find the way back','🧭'],['hears a strange noise behind a locked door','heard a strange noise behind a locked door','🚪'],['discovers a tiny creature that needs help','discovered a tiny creature that needed help','🐉'],['loses something very precious','lost something very precious','💍'],['finds a door that was not there yesterday','found a door that had not been there the day before','✨'],['sees a friend in danger','saw a friend in danger','🆘'],['gets trapped as the storm gets worse','got trapped as the storm got worse','🌪️'],['finds a box that glows','found a box that glowed','📦'],['is told a secret that must be kept','was told a secret that had to be kept','🤫']];
-var FIXES=[['has a clever idea','had a clever idea','💡'],['is brave and asks for help','was brave and asked for help','🙋'],['teams up with a new friend','teamed up with a new friend','🤝'],['follows the clues one by one','followed the clues one by one','🔍'],['faces the fear and keeps going','faced the fear and kept going','💪'],['remembers something {his} gran once said','remembered something {his} gran once said','👵'],['finds a hidden path','found a hidden path','🛤️'],['uses something from {his} pocket','used something from {his} pocket','🎒']];
-var ENDS=[['gets home safe and feels braver than before','got home safe and felt braver than before','🏠'],['makes a new best friend','had made a new best friend','💛'],['learns that being different is a strength','learned that being different is a strength','🌈'],['keeps the secret forever','kept the secret forever','🔐'],['goes back to where it all started, but everything feels different','went back to where it all started, but everything felt different','🔄'],['smiles, ready for the next adventure','smiled, ready for the next adventure','🌅']];
-var STG=[['Opening','#3B6FB0'],['Build-up','#167070'],['Problem','#A63D5E'],['Fix it','#6847B8'],['Ending','#B85A12']];
-var WARR={set:SETS,when:WHENS,feel:FEELS,prob:PROBS,fix:FIXES,end:ENDS};
-var CARDS=[['who',0,'Who is in your story?'],['set',0,'Where are they?'],['when',0,'When does it happen?'],['feel',1,'How do they feel at the start?'],['prob',2,'What goes wrong?'],['fix',3,'How do they fix it?'],['end',4,'How does it end?']];
-var SENSE=[['👀','See'],['👂','Hear'],['👃','Smell or taste'],['✋','Feel']];
-var OPENERS=[
-['-ing start','🏃','Start with an -ing word, then a comma.','Shivering, {n} looked around {place}.'],
-['-ed start','😨','Start with an -ed word, then a comma.','Terrified, {n} froze on the spot.'],
-['Like a ...','🦊','Compare it to something. This is a simile.','Like a fox, {n} crept forward without a sound.'],
-['Where','📍','Start by saying where it happens.','Behind the old door, something moved.'],
-['How','🐢','Start with a word ending in -ly, then a comma.','Slowly, {n} turned around.'],
-['When','⏰','Start with a time word or phrase.','Moments later, the lights went out.'],
-['Speech','💬','Start with someone talking. Use speech marks.','"Who is there?" whispered {n}.'],
-['Question','❓','Ask the reader a question.','Would {n} ever find the way home?'],
-['Short and sharp','⚡','A very short sentence makes the reader jump.','{He} ran.'],
-['Sound word','💥','Start with a sound word. This is onomatopoeia.','CRASH! The window shattered into pieces.']];
-var TICKS=['Plan for 5 minutes first. (You just did!)','Write one paragraph for each part of the mountain.','Show feelings. Do not just tell them.','Use at least 2 senses.','Start sentences in different ways.','Use speech marks when someone talks.','At the end, check capital letters and full stops.'];
-var WSUB=[['b','Build a story','#3B6FB0'],['f','Feelings','#167070'],['s','Senses','#6847B8'],['o','Openers','#B85A12'],['p','My plans','#A63D5E']];
-var wSub='b',wP=null,wq=null,wDone=false,wTried=[],wMsg='',wMsgC='',wO=0,wPlans=[],wDel=-1,wNote='';
-try{wP=JSON.parse(localStorage.getItem('tt-wcur')||'null');wPlans=JSON.parse(localStorage.getItem('tt-plans')||'[]')}catch(e){}
-function wSave(){try{localStorage.setItem('tt-wcur',JSON.stringify(wP));localStorage.setItem('tt-plans',JSON.stringify(wPlans))}catch(e){}}
-function cap(s){return s.charAt(0).toUpperCase()+s.slice(1)}
-function esc(s){return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
-function rOther(n,cur){var v;do{v=Math.floor(Math.random()*n)}while(n>1&&v==cur);return v}
-function W(){return wP||{name:'Sam',pr:'he',set:0}}
-function F(t,P){P=P||W();var p=PR[P.pr];return t.replace(/\{(\w+)\}/g,function(m,k){return k=='n'?P.name:k=='place'?SETS[P.set][1]:k=='He'?cap(p.he):k=='His'?cap(p.his):p[k]})}
-function wNew(){var nm=one(NAMES);wP={id:Date.now(),name:nm[0],pr:nm[1],det:rnd(0,DETS.length-1),step:0,ticks:[],star:false};
-for(var k in WARR)wP[k]=rnd(0,WARR[k].length-1);wSave()}
-function wShuf(k){if(k=='who'){var nm=one(NAMES.filter(function(x){return x[0]!=wP.name}));wP.name=nm[0];wP.pr=nm[1];wP.det=rOther(DETS.length,wP.det)}else wP[k]=rOther(WARR[k].length,wP[k]);wSave()}
-function cardText(k,P){P=P||W();var n=P.name;
-return k=='who'?n+', '+F(DETS[P.det],P):k=='set'?n+' is '+SETS[P.set][0]+'.':k=='when'?cap(F(WHENS[P.when][0],P))+'.':k=='feel'?n+' feels '+FEELS[P.feel][0]+'.':n+' '+F(WARR[k][P[k]][0],P)+'.'}
-function cardEmo(k,P){P=P||W();return k=='who'?(P.pr=='she'?'👧':'👦'):k=='set'?SETS[P.set][2]:k=='when'?WHENS[P.when][1]:k=='feel'?FEELS[P.feel][1]:WARR[k][P[k]][2]}
-function senseList(si){var s=SETS[si];return '<ul class="wlist">'+SENSE.map(function(x,i){return '<li>'+x[0]+' <b>'+x[1]+':</b> '+F(s[3+i])+'</li>'}).join('')+'</ul>'}
-function picture(k){var P=W();
-if(k=='who')return F('Close your eyes and picture {n}. What does {he} look like? What is {he} wearing?');
-if(k=='set')return 'Use your senses to describe it:'+senseList(P.set);
-if(k=='when')return F('Is it light or dark? Warm or cold? What can {n} hear?');
-if(k=='feel')return F('Do not just say "{n} was ')+FEELS[P.feel][0]+'". Show it:<ul class="wlist">'+FEELS[P.feel][2].map(function(s){return '<li>'+F(s)+'</li>'}).join('')+'</ul>';
-if(k=='prob')return F('What does {n} see first? What does {he} say? Try speech: "What was that?" whispered {n}.');
-if(k=='fix')return 'This is the exciting part! What is the brave or clever moment?';
-return F('How has {n} changed since the start? A great ending links back to the beginning.')}
-function models(P){P=P||W();var n=P.name,f=FEELS[P.feel][2];
-return [cap(F(WHENS[P.when][0],P))+', '+n+' was '+SETS[P.set][0]+'. '+F(SETS[P.set][3],P),
-F(f[0],P)+' '+F(f[1],P),'Suddenly, '+n+' '+F(PROBS[P.prob][1],P)+'.','Just in time, '+n+' '+F(FIXES[P.fix][1],P)+'.','Finally, '+n+' '+F(ENDS[P.end][1],P)+'.']}
-function notes(P){return [[cardText('who',P)+'.',cardText('set',P),cardText('when',P)],[cardText('feel',P)],[cardText('prob',P)],[cardText('fix',P)],[cardText('end',P)]]}
-function mountain(){var pts=[[40,112],[105,80],[165,30],[232,72],[288,112]],s='<svg viewBox="0 0 330 150" class="wmtn" aria-hidden="true"><path d="M8 140L70 100L120 70L165 18L210 55L255 92L322 140Z" style="fill:var(--bg);stroke:var(--line);stroke-width:3;stroke-linejoin:round"/>';
-pts.forEach(function(p,i){s+='<circle cx="'+p[0]+'" cy="'+p[1]+'" r="15" style="fill:'+STG[i][1]+'"/><text x="'+p[0]+'" y="'+(p[1]+6)+'" text-anchor="middle" style="fill:#fff;font:600 17px Lexend,Verdana,sans-serif">'+(i+1)+'</text>'});
-return s+'</svg>'}
-function wTabs(){var tb='';WSUB.forEach(function(x){tb+='<button class="fs'+(x[0]==wSub?' on':'')+'" data-ws="'+x[0]+'"'+(x[0]==wSub?' style="background:'+x[2]+'"':'')+'>'+x[1]+'</button>'});$('#tabs').innerHTML=tb}
-function wQuiz(){wDone=false;wTried=[];wMsg='';
-if(wSub=='f'){var f=rOther(FEELS.length,wq&&wq.f),o=[f];while(o.length<3){var x=rnd(0,FEELS.length-1);if(o.indexOf(x)<0)o.push(x)}wq={f:f,s:rnd(0,2),opts:sh(o)}}
-else{var si=rOther(SETS.length,wq&&wq.si);wq={si:si,k:rnd(0,3)}}}
-function wAns(v){if(wDone||wTried.indexOf(v)>-1)return;var ok=wSub=='f'?v==wq.f:v==wq.k;
-if(ok){wDone=true;stars++;save();wMsg=wSub=='f'?'Yes! That shows '+W().name+' is '+FEELS[wq.f][0]+'.':'Yes! That is something you can '+SENSE[wq.k][1].toLowerCase()+'.';wMsgC='good'}
-else{wTried.push(v);wMsg=wSub=='f'?'Not yet. Read it again. What would your body do?':'Not yet. Which part of your body would notice this?';wMsgC='no'}draw()}
-function drawW(){wTabs();var col=WSUB.filter(function(x){return x[0]==wSub})[0][2],h='',P;
-document.documentElement.style.setProperty('--a',col);
-if(wSub=='b'){if(!wP)wNew();P=wP;
-if(P.step<7){var c=CARDS[P.step],k=c[0],sc=STG[c[1]][1];document.documentElement.style.setProperty('--a',sc);
-var dots='<div class="wdots">';for(var i=0;i<7;i++)dots+='<span class="'+(i<=P.step?'on':'')+'"></span>';dots+='</div>';
-h='<div class="card"><div class="split"><div class="vis"><div class="wcard" style="border-color:'+sc+'"><div class="wstage" style="background:'+sc+'">Card '+(P.step+1)+' of 7 · '+STG[c[1]][0]+'</div><p class="wq">'+c[2]+'</p><div class="wemo">'+cardEmo(k)+'</div><p class="wtext">'+esc(cardText(k))+'</p>'+dots+'</div></div><div class="ctl">';
-if(k=='who')h+='<div class="row" style="margin-bottom:10px"><input id="wname" class="winput" style="flex:1;width:auto" maxlength="14" aria-label="Character name" value="'+esc(P.name)+'"><button class="btn'+(P.pr=='he'?' sel':'')+'" data-pr="he">he</button><button class="btn'+(P.pr=='she'?' sel':'')+'" data-pr="she">she</button></div>';
-h+='<div class="trick" style="margin-top:0"><b>Picture it.</b> '+picture(k)+'</div>';
-h+='<div class="row" style="margin-top:12px"><button class="btn" data-wsay="'+esc(cardText(k))+'">Hear it</button><button class="btn" data-w="shuf">Another idea</button>'+(P.step>0?'<button class="btn" data-w="back">Back</button>':'')+'</div>';
-h+='<button class="btn main" data-w="keep">Keep this card ✓</button></div></div></div>';
-h+='<p class="legend">Not sure? Tap "Another idea" until one makes a picture in your head.</p>'}
-else{if(!P.star){P.star=true;stars++;save();wSave()}
-var md=models(P),nt=notes(P);h='<div class="card wplan"><h2 class="wtitle">'+esc(P.name)+'\'s story plan</h2>'+mountain();
-STG.forEach(function(s,i){h+='<div class="wstep" style="border-color:'+s[1]+'"><h3 style="color:'+s[1]+'">'+(i+1)+'. '+s[0]+'</h3><div>'+nt[i].map(esc).join(' ')+'</div>'+(i==0?'<div class="wsense">'+SENSE.map(function(x,j){return x[0]+' '+esc(F(SETS[P.set][3+j],P))}).join('<br>')+'</div>':'')+'<p class="wmodel"><span class="legend">Try saying:</span> '+esc(md[i])+'</p><button class="btn small noprint" data-wsay="'+esc(md[i])+'">Hear it</button></div>'});
-h+='<div class="trick"><b>Story hand.</b> Tell your story out loud before you write it. Hold up one finger for each part of the mountain.</div>';
-h+='<h3 style="margin:16px 0 4px">In the test</h3>'+TICKS.map(function(t,i){var on=P.ticks.indexOf(i)>-1;return '<button class="tick'+(on?' on':'')+'" data-wt="'+i+'"><span class="bx">'+(on?'✓':'')+'</span>'+t+'</button>'}).join('');
-if(wNote)h+='<p class="msg good">'+wNote+'</p>';
-h+='<div class="row noprint" style="margin-top:14px"><button class="btn" data-w="hearall">Hear my plan</button><button class="btn" data-w="print">Print</button><button class="btn" data-w="save">Save to My plans</button><button class="btn" data-w="edit">Change cards</button></div><button class="btn main noprint" data-w="new">New story</button></div>'}}
-else if(wSub=='f'||wSub=='s'){if(!wq||(wSub=='f')!=('f' in wq))wQuiz();
-if(wSub=='f'){var fs=FEELS[wq.f];
-h='<div class="card"><div class="split"><div class="vis"><div class="wcard" style="border-color:'+col+'"><div class="wstage" style="background:'+col+'">Show, do not tell</div><p class="wq">How does '+esc(W().name)+' feel?</p><p class="wtext" style="margin-top:14px">'+esc(F(fs[2][wq.s]))+'</p>'+(wDone?'<div class="wemo">'+fs[1]+'</div>':'<div style="height:16px"></div>')+'</div></div><div class="ctl">';
-if(!wDone)h+='<div class="opts" style="margin-top:0">'+wq.opts.map(function(o){return '<button class="wbtn '+(wTried.indexOf(o)>-1?'bad':'')+'" data-wf="'+o+'"><span class="wsm">'+FEELS[o][1]+'</span><br>'+FEELS[o][0]+'</button>'}).join('')+'</div>';
-if(wMsg)h+='<p class="msg '+wMsgC+'">'+wMsg+'</p>';
-if(wDone)h+='<div class="trick">Telling: "'+esc(W().name)+' was '+fs[0]+'."<br>Showing is better:<ul class="wlist">'+fs[2].map(function(s){return '<li>'+esc(F(s))+'</li>'}).join('')+'</ul></div>';
-h+='<div class="row" style="margin-top:12px"><button class="btn" data-wsay="'+esc(F(fs[2][wq.s]))+'">Hear it</button></div>'+(wDone?'<button class="btn main" data-w="next">Next one</button>':'')+'</div></div></div>'}
-else{var st=SETS[wq.si];
-h='<div class="card"><div class="split"><div class="vis"><div class="wcard" style="border-color:'+col+'"><div class="wstage" style="background:'+col+'">Which sense is it?</div><p class="wq">'+cap(st[0])+'</p><div class="wemo">'+st[2]+'</div><p class="wtext">'+esc(F(st[3+wq.k]))+'</p></div></div><div class="ctl">';
-if(!wDone)h+='<div class="opts four" style="margin-top:0">'+SENSE.map(function(x,i){return '<button class="wbtn '+(wTried.indexOf(i)>-1?'bad':'')+'" data-wn="'+i+'"><span class="wsm">'+x[0]+'</span><br>'+x[1]+'</button>'}).join('')+'</div>';
-if(wMsg)h+='<p class="msg '+wMsgC+'">'+wMsg+'</p>';
-if(wDone)h+='<div class="trick">All four senses '+st[0]+':'+senseList(wq.si)+'</div>';
-h+='<div class="row" style="margin-top:12px"><button class="btn" data-wsay="'+esc(F(st[3+wq.k]))+'">Hear it</button></div>'+(wDone?'<button class="btn main" data-w="next">Next one</button>':'')+'</div></div></div>'}
-h+='<div class="card"><div class="legend" style="text-align:left;margin:0">Remember</div><div>'+(wSub=='f'?'Readers love it when you <b>show</b> a feeling. Think: what would your face, hands and heart do?':'Use at least 2 senses when you describe a place. It helps the reader feel like they are there.')+'</div></div>'}
-else if(wSub=='o'){var o=OPENERS[wO];
-h='<div class="card"><div class="split"><div class="vis"><div class="wcard" style="border-color:'+col+'"><div class="wstage" style="background:'+col+'">Sentence opener '+(wO+1)+' of '+OPENERS.length+'</div><div class="wemo">'+o[1]+'</div><p class="wtext">'+o[0]+'</p><p class="wq" style="margin-bottom:0">'+o[2]+'</p></div></div><div class="ctl"><div class="trick" style="margin-top:0"><b>Example:</b><br><span style="font-size:22px">'+esc(F(o[3]))+'</span></div><p class="msg">Your turn: say a sentence about '+esc(W().name)+' that starts this way.</p>';
-h+='<div class="row" style="margin-top:12px"><button class="btn" data-wsay="'+esc(F(o[3]))+'">Hear it</button>'+(wO>0?'<button class="btn" data-w="oprev">Back</button>':'')+'</div><button class="btn main" data-w="onext">'+(wO<OPENERS.length-1?'Next opener':'Start again')+'</button></div></div></div>';
-h+='<div class="card"><div class="legend" style="text-align:left;margin:0">Remember</div><div>Examiners look for sentences that start in different ways. Try to use 3 different openers in every story.</div></div>'}
-else{h='<div class="card"><h2 class="wtitle">My plans</h2>';
-if(!wPlans.length)h+='<p>No saved plans yet. Build a story, then tap "Save to My plans".</p>';
-wPlans.forEach(function(p,i){h+='<div class="row wsaved"><button class="btn" style="flex:1;text-align:left" data-wp="'+i+'">'+cardEmo('set',p)+' '+esc(p.name)+' '+esc(SETS[p.set][0])+'<br><span class="legend">'+esc(p.saved||'')+'</span></button><button class="btn" data-wdel="'+i+'">'+(wDel==i?'Tap again to remove':'Remove')+'</button></div>'});
-h+='</div>'}
-$('#app').innerHTML=h;$('#st').textContent='★ '+stars+' stars earned'}
-function wClick(b){var d=b.dataset;
-if(d.ws){wSub=d.ws;wMsg='';wDel=-1;wNote='';if(wSub=='f'||wSub=='s')wq=null;draw();return true}
-if(d.wsay!=null){say(d.wsay);return true}
-if(d.pr){wP.pr=d.pr;wSave();draw();return true}
-if(d.wf!=null){wAns(+d.wf);return true}
-if(d.wn!=null){wAns(+d.wn);return true}
-if(d.wt!=null){var t=+d.wt,ix=wP.ticks.indexOf(t);if(ix>-1)wP.ticks.splice(ix,1);else wP.ticks.push(t);wSave();draw();return true}
-if(d.wp!=null){wP=JSON.parse(JSON.stringify(wPlans[+d.wp]));wP.step=7;wSub='b';wNote='';wSave();draw();scrollTo(0,0);return true}
-if(d.wdel!=null){var i=+d.wdel;if(wDel==i){wPlans.splice(i,1);wDel=-1;wSave()}else wDel=i;draw();return true}
-if(!d.w)return false;var a=d.w;wNote='';
-if(a=='keep'){wP.step++;wSave();draw();scrollTo(0,0)}
-else if(a=='shuf'){wShuf(CARDS[wP.step][0]);draw()}
-else if(a=='back'){wP.step--;wSave();draw()}
-else if(a=='edit'){wP.step=0;wSave();draw();scrollTo(0,0)}
-else if(a=='new'){wNew();draw();scrollTo(0,0)}
-else if(a=='hearall')say(models(wP).join(' '));
-else if(a=='print')window.print();
-else if(a=='save'){var c=JSON.parse(JSON.stringify(wP)),dt=new Date();c.saved=dt.getDate()+' '+['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][dt.getMonth()]+' '+dt.getFullYear();
-var ix=-1;wPlans.forEach(function(p,i){if(p.id==c.id)ix=i});if(ix>-1)wPlans.splice(ix,1);wPlans.unshift(c);wPlans=wPlans.slice(0,20);wSave();wNote='Saved! Find it in My plans.';draw()}
-else if(a=='next'){wQuiz();draw()}
-else if(a=='onext'){wO=(wO+1)%OPENERS.length;draw()}
-else if(a=='oprev'){wO--;draw()}
-return true}
+var SHP=[['Circle',0,0,'No straight sides. One round edge, like a wheel.','c'],['Oval',0,0,'A stretched circle, like an egg.','o'],['Triangle',3,3,'Tri means 3, like a tricycle has 3 wheels.',3],['Square',4,4,'4 equal sides and 4 square corners.','sq'],['Rectangle',4,4,'2 long sides and 2 short sides, with 4 square corners.','re'],['Rhombus',4,4,'A diamond. All 4 sides are equal.','rh'],['Parallelogram',4,4,'A tilted rectangle. Opposite sides run side by side.','pa'],['Trapezium',4,4,'Only one pair of sides runs side by side.','tz'],['Kite',4,4,'Like a kite in the sky. Two short sides and two long sides.','ki'],['Pentagon',5,5,'Penta means 5, like 5 fingers on a hand.',5],['Hexagon',6,6,'Hex means 6, like a honeycomb cell.',6],['Heptagon',7,7,'Hepta means 7, like 7 days in a week.',7],['Octagon',8,8,'Octo means 8, like an octopus has 8 arms. A stop sign is an octagon.',8],['Nonagon',9,9,'Nona means 9. Count 9 sides.',9],['Decagon',10,10,'Deca means 10, like a decade is 10 years.',10]];
+var sm='f',si=-1,flip=false,sTried=[],sDone=false,sOpts=[],smiss={};
+function shSvg(i){var sp=SHP[i],f=['#167070','#6847B8','#B85A12','#3B6FB0','#A63D5E','#5A7A1F'][i%6],k=sp[4],b;
+if(k=='c')b='<circle cx="60" cy="60" r="50"/>';else if(k=='o')b='<ellipse cx="60" cy="60" rx="55" ry="36"/>';
+else if(typeof k=='number'){var pt=[];for(var j=0;j<k;j++){var an=-Math.PI/2+2*Math.PI*j/k;pt.push((60+52*Math.cos(an)).toFixed(1)+','+(60+52*Math.sin(an)).toFixed(1))}b='<polygon points="'+pt.join(' ')+'"/>'}
+else b={sq:'<rect x="15" y="15" width="90" height="90"/>',re:'<rect x="5" y="25" width="110" height="70"/>',rh:'<polygon points="60,5 110,60 60,115 10,60"/>',pa:'<polygon points="30,25 115,25 90,95 5,95"/>',tz:'<polygon points="35,25 85,25 115,95 5,95"/>',ki:'<polygon points="60,5 100,45 60,115 20,45"/>'}[k];
+return '<svg viewBox="0 0 120 120" width="190" height="190" style="display:block;margin:0 auto" fill="'+f+'" stroke="#1B2A3A" stroke-width="4" stroke-linejoin="round" role="img" aria-label="shape">'+b+'</svg>'}
+function shNew(){var pool=[];SHP.forEach(function(x,i){var w=i==si?0:1+3*(smiss[i]||0);for(var j=0;j<w;j++)pool.push(i)});
+si=pool[ri(0,pool.length-1)];flip=false;sTried=[];sDone=false;var o=[si];SHP.forEach(function(x,i){if(i!=si)o.push(i)});sOpts=sh([si].concat(sh(o.slice(1)).slice(0,2)))}
+function shFacts(i){var x=SHP[i];return (x[1]?x[1]+' sides, '+x[2]+' corners. ':'0 straight sides. ')+x[3]}
+function drawSH(){if(si<0)shNew();document.documentElement.style.setProperty('--a','#2F5D8A');
+$('#tabs').innerHTML=[['f','Flash cards'],['q','Quiz']].map(function(m){return '<button class="tm'+(m[0]==sm?' on':'')+'" data-sm="'+m[0]+'">'+m[1]+'</button>'}).join('');
+var x=SHP[si],h='<div class="card">'+shSvg(si);
+if(sm=='f'){if(!flip)h+='<p class="legend" style="margin-top:12px">What is this shape called?</p><button class="btn main" id="sf">Flip the card</button>';
+else h+='<p class="sname">'+x[0]+'</p><div class="trick">'+shFacts(si)+'</div><div class="row" style="margin-top:12px"><button class="btn" id="sh">Hear it</button><button class="btn" data-g="n">Practise again</button><button class="btn" data-g="y">Got it</button></div>'}
+else{h+='<p class="legend" style="margin-top:12px">Which shape is this?</p><div class="opts w">'+sOpts.map(function(i){return '<button data-sq="'+i+'" class="'+(sTried.indexOf(i)>-1?'bad':'')+(sDone&&i==si?' good':'')+'">'+SHP[i][0]+'</button>'}).join('')+'</div>';
+if(sDone)h+='<p class="msg good">Yes! '+x[0]+'</p><div class="trick">'+shFacts(si)+'</div><div class="row" style="margin-top:12px"><button class="btn" id="sh">Hear it</button></div><button class="btn main" id="sn">Next shape</button>';
+else if(sTried.length)h+='<p class="msg no">Not yet. Look at the sides and corners and try again.</p>'}
+h+='</div><div class="card"><div class="legend" style="text-align:left">Big ideas</div><p style="margin:4px 0">A polygon is a flat shape with straight sides. Circles and ovals are not polygons.</p><p style="margin:4px 0">Count the sides. The name tells you how many: tri 3, quad 4, penta 5, hexa 6, hepta 7, octa 8, nona 9, deca 10.</p></div>';
+$('#app').innerHTML=h}
 function draw(){
-$('#mode').innerHTML=[['t','Times tables'],['l','Division'],['f','Fractions'],['w','Writing']].map(function(m){return '<button data-m="'+m[0]+'" class="'+(m[0]==mode?'on':'')+'">'+m[1]+'</button>'}).join('');
-$('#vw').hidden=mode!='t';$('#mf').hidden=mode=='l'||mode=='w';$('#st').textContent='★ '+stars+' stars earned';
-if(mode=='l'){drawLD();return}
-if(mode=='f'){drawFR();return}
-if(mode=='w'){drawW();return}
+$('#mode').innerHTML=[['t','Times tables'],['l','Long division'],['a','Algebra'],['s','Shapes']].map(function(m){return '<button data-m="'+m[0]+'" class="'+(m[0]==mode?'on':'')+'">'+m[1]+'</button>'}).join('');
+$('#vw').hidden=mode!='t';$('#st').textContent='★ '+stars+' stars earned';
+if(mode=='l'){drawLD();return}if(mode=='a'){drawAL();return}if(mode=='s'){drawSH();return}
 var tb='';TS.concat('m').forEach(function(t){tb+='<button class="t'+t+(t==tbl?' on':'')+'" data-t="'+t+'">'+(t=='m'?'Mix':t)+'</button>'});
 $('#tabs').innerHTML=tb;
 document.documentElement.style.setProperty('--a',accent(tbl=='m'?cur&&cur.t:tbl));
-$('#vw').textContent=view=='c'?'Back to practice':'Show chart';
-$('#mf').textContent=view=='f'?'Back to practice':'My facts';
-var nm=nMastered(TS);$('#st').textContent='★ '+stars+' stars earned'+(nm?' · '+nm+' facts mastered':'');
+$('#vw').textContent=view=='p'?'Show chart':'Back to practice';
+$('#st').textContent='★ '+stars+' stars earned';
 var h='';
 if(view=='c'){var ts=tbl=='m'?TS:[tbl];
 h='<div class="card chart">';ts.forEach(function(t){h+='<div style="color:'+accent(t)+';font-weight:600;margin-top:6px">The '+t+' times table</div>';
 for(var n=1;n<=12;n++)h+='<button data-say="'+t+' times '+n+' equals '+t*n+'">'+t+' × '+n+' <b style="color:'+accent(t)+'">'+t*n+'</b></button>'});
 h+='</div><p class="legend">Tap a line to hear it.</p>'}
-else if(view=='f'){var ts=tbl=='m'?TS:[tbl];
-h='<div class="card"><p class="legend" style="text-align:left">Get a fact right first time on 3 different days and it is mastered. One dot fills each day.</p>';
-ts.forEach(function(t){var col=accent(t),m=0,g=0,tl='';
-for(var n=2;n<=12;n++){var L=lvl(t+'x'+n),pp='';if(L>=3)m++;else if(L>0)g++;
-for(var i=0;i<3;i++)pp+='<span class="pip'+(i<L?' on':'')+'"></span>';
-tl+='<button class="fact'+(L>=3?' m':'')+'" data-f="'+t+'x'+n+'" style="'+(L>=3?'background:'+col+';border-color:'+col:L>0?'border-color:'+col:'')+'">'+t+' × '+n+'<span class="pips" style="color:'+(L>=3?'#fff':col)+'">'+pp+'</span></button>'}
-h+='<div class="ftitle" style="color:'+col+'">The '+t+' times table</div><div class="legend" style="text-align:left;margin:0">'+(m?m+' mastered':'Just starting')+(g?', '+g+' getting there':'')+'</div><div class="facts">'+tl+'</div>'});
-h+='</div><p class="legend">Tap a fact to practise it.</p>'}
 else{if(!cur)pick();
-h='<div class="card"><div class="split"><div class="vis"><p class="q">'+cur.t+' × '+cur.n+' = <span>'+(done?cur.t*cur.n:'?')+'</span></p>'+dots(cur.t,cur.n)+
-'<p class="legend">'+cur.n+' rows of '+cur.t+'. The two colours are two easier sums.</p></div><div class="ctl">'+
+h='<div class="card"><p class="q">'+cur.t+' × '+cur.n+' = <span>'+(done?cur.t*cur.n:'?')+'</span></p>'+dots(cur.t,cur.n)+
+'<p class="legend">'+cur.n+' rows of '+cur.t+'. The two colours are two easier sums.</p>'+
 '<div class="opts">'+opts.map(function(o){return '<button data-a="'+o+'" class="'+(tried.indexOf(o)>-1?'bad':'')+(done&&o==cur.t*cur.n?' good':'')+'">'+o+'</button>'}).join('')+'</div>'+
 (msg?'<p class="msg '+msgC+'">'+msg+'</p>':'')+
 (showTrick?'<div class="trick">'+trick(cur.t,cur.n)+'</div>':'')+
 '<div class="row" style="margin-top:12px"><button class="btn" id="hear">Hear it</button>'+(showTrick?'':'<button class="btn" id="tk">Show the trick</button>')+'</div>'+
-(done?'<button class="btn main" id="nx">Next fact</button>':'')+'</div></div></div>'}
+(done?'<button class="btn main" id="nx">Next fact</button>':'')+'</div>'}
 $('#app').innerHTML=h}
 document.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;
-if(mode=='w'&&wClick(b))return;
 if(b.dataset.t){tbl=b.dataset.t=='m'?'m':+b.dataset.t;cur=null;draw()}
 else if(b.dataset.a)answer(+b.dataset.a);
-else if(b.dataset.f){var fp=b.dataset.f.split('x');setFact(+fp[0],+fp[1]);view='p';draw();scrollTo(0,0)}
 else if(b.dataset.say)say(b.dataset.say);
-else if(b.dataset.m){mode=b.dataset.m;view='p';draw()}
+else if(b.dataset.m){mode=b.dataset.m;draw()}
+else if(b.dataset.v){alvl=+b.dataset.v;al=null;draw()}
+else if(b.dataset.ax){aX=!aX;draw()}
+else if(b.dataset.q)alAns(+b.dataset.q);
+else if(b.id=='at'){aTrick=true;draw()}
+else if(b.id=='an'){al=null;draw()}
+else if(b.id=='ah')say(al.e.replace(/×/g,' times ').replace(/÷/g,' divided by ').replace(/−/g,' minus ').replace(/@/g,' what number ').replace(/=/g,' equals '));
+else if(b.dataset.sm){sm=b.dataset.sm;si=-1;draw()}
+else if(b.id=='sf'){flip=true;draw()}
+else if(b.dataset.g){var gi=si;if(b.dataset.g=='n')smiss[gi]=(smiss[gi]||0)+1;else if(smiss[gi])smiss[gi]--;shNew();draw()}
+else if(b.dataset.sq){var qi=+b.dataset.sq;if(!sDone&&sTried.indexOf(qi)<0){if(qi==si){sDone=true;stars++;save()}else{sTried.push(qi);smiss[si]=(smiss[si]||0)+1}}draw()}
+else if(b.id=='sn'){shNew();draw()}
+else if(b.id=='sh')say(SHP[si][0]+'. '+shFacts(si));
 else if(b.dataset.d){dv=b.dataset.d=='m'?'m':+b.dataset.d;ld=null;draw()}
 else if(b.dataset.c){var cc=b.dataset.c;if(cc=='dig')ldDig=ldDig==2?3:2;else if(cc=='rem')ldRem=!ldRem;else watch=!watch;ld=null;draw()}
 else if(b.dataset.l)ldAns(b.dataset.l);
@@ -513,19 +242,8 @@ else if(b.id=='lh')say(ld.st[k]?ldQ(ld.st[k]).replace('×','times').replace('−
 else if(b.id=='hear')say(cur.t+' times '+cur.n+' equals '+cur.t*cur.n);
 else if(b.id=='tk'){showTrick=true;draw()}
 else if(b.id=='nx'){pick();draw()}
-else if(b.id=='vw'){view=view=='c'?'p':'c';draw()}
-else if(b.id=='mf'){view=view=='f'?'p':'f';draw()}
-else if(b.dataset.fs){fPick=b.dataset.fs;fq=null;draw()}
-else if(b.dataset.fa)fAns(b.dataset.fa);
-else if(b.dataset.ff){fNew(+b.dataset.ff.slice(1),b.dataset.ff[0]);fTag();view='p';draw();scrollTo(0,0)}
-else if(b.id=='fnx'){fq=null;draw()}
-else if(b.id=='ftk'){fTrick=true;draw()}
-else if(b.id=='fh')say(fSayQ().replace(/×/g,'times').replace(/÷/g,'divided by'));
+else if(b.id=='vw'){view=view=='p'?'c':'p';draw()}
 else if(b.id=='th'){var r=document.documentElement,dk=r.dataset.theme?r.dataset.theme=='dark':matchMedia('(prefers-color-scheme:dark)').matches;r.dataset.theme=dk?'light':'dark'}});
-var lay='ipad';try{lay=localStorage.getItem('tt-lay')||'ipad'}catch(e){}
-function setLay(v){lay=v;document.body.dataset.lay=v;$('#lay').value=v;try{localStorage.setItem('tt-lay',v)}catch(e){}}
-document.addEventListener('change',function(e){if(e.target.id=='wname'&&wP){var v=e.target.value.trim();if(v){wP.name=v;wSave()}draw()}});
-$('#lay').addEventListener('change',function(){setLay(this.value)});setLay(lay);
 draw();
 </script>
 </body>
